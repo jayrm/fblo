@@ -31,6 +31,7 @@ usage() {
 	echo "   mingw-w64-gcc-11.2.0  building with mingw-w64 gcc-11.2.0 toolchain"
 	echo "package:"
 	echo "   none              don't build, but allow --clean-build"
+	echo "   zlib-1.3          zlib version 1.3"
 	echo ""
 	exit 1
 }
@@ -135,6 +136,15 @@ dobuild () {
 	echo "building ${arg} for ${FBCVERSION}, ${TARGET}-${TOOLCHAIN}"
 
 	case $arg in
+#	zlib-1.2.8)
+#		download_source https://github.com/madler/zlib/archive/refs/tags/ v1.2.8.zip zlib-1.2.8.zip
+#		extract_package zlib-1.2.8.zip zlib-1.2.8
+#		;;
+	zlib-1.3)
+		# https://github.com/madler/zlib/releases/download/v1.3/zlib13.zip
+		download_source https://www.zlib.net/ zlib13.zip zlib-1.3.zip
+		extract_package zlib-1.3.zip zlib-1.3
+		;;
 	*)
 		echo "unrecognized package $1"
 		exit 1
@@ -196,6 +206,9 @@ do
 	--keep-build|-keep-build|keep-build)
 		DOCLEAN="keep-build"
 		;;
+	zlib-1.3)
+		PACKAGEID="$arg"
+		;;
 	-*)
 		echo "invalid argument $arg"
 		exit 1
@@ -237,6 +250,7 @@ fi
 if [ "${DOALL}" = "yes" ]; then
 
 	# list all packages here
+	dobuild zlib-1.3
 
 	if [ "${DOCLEAN}" = "build" ]; then
 		echo "removing build directory"
