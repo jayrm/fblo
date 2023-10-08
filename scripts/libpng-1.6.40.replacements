@@ -1,0 +1,14 @@
+convert c: #define png_sizeof(x) sizeof(x)
+to fb:     #define png_sizeof(x) sizeof(x)
+convert c: #define png_sizeof(x) (sizeof(x))
+to fb:     #define png_sizeof(x) sizeof(x)
+
+convert c: #define png_jmpbuf(png_ptr) ((png_ptr)->jmpbuf)
+to fb:     #define png_jmpbuf(png_ptr) (@(png_ptr)->jmpbuf)
+convert c: #define png_jmpbuf(png_ptr) (*png_set_longjmp_fn((png_ptr), longjmp, sizeof(jmp_buf)))
+to fb:     #define png_jmpbuf(png_ptr) png_set_longjmp_fn((png_ptr), @longjmp, sizeof(jmp_buf))
+convert c: #define png_jmpbuf(png_ptr) (*png_set_longjmp_fn((png_ptr), longjmp, (sizeof(jmp_buf))))
+to fb:     #define png_jmpbuf(png_ptr) png_set_longjmp_fn((png_ptr), @longjmp, sizeof(jmp_buf))
+
+convert c: #define png_info_init(info_ptr) png_info_init_3(&info_ptr, png_sizeof(png_info));
+to c:      #define png_info_init(info_ptr) png_info_init_3(&info_ptr, png_sizeof(png_info))

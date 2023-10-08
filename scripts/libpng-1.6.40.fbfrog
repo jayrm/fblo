@@ -1,0 +1,66 @@
+-define PNG_NO_TYPECAST_NULL
+-define PNG_NO_PEDANTIC_WARNINGS
+-fbfroginclude limits.h
+
+-replacements ./scripts/libpng-1.6.40.replacements
+
+-inclib png16
+-inclib z
+
+-rename_ PNG_LIBPNG_VER
+-rename_ PNG_READ_TEXT_SUPPORTED
+-rename_ PNG_TEXT_SUPPORTED
+-rename_ PNG_WRITE_TEXT_SUPPORTED
+-renameproc png_info_init png_info_init_
+
+-removedefine CVT_PTR
+-removedefine CVT_PTR_NOCHECK
+-removedefine FAR
+-removedefine FARDATA
+-removedefine PNG_ALLOCATED
+-removedefine PNG*API
+-removedefine PNGARG
+-removedefine PNG_CALLBACK
+-removedefine PNG_CONST
+-removedefine PNG_DEPRECATED
+-removedefine PNG_DEPSTRUCT
+-removedefine PNG_DLL_EXPORT
+-removedefine PNG_DLL_IMPORT
+-removedefine PNG_EMPTY
+-removedefine PNG_EXPORT*
+-removedefine PNG_FIXED_EXPORT
+-removedefine PNG_FP_EXPORT
+-removedefine PNG_FUNCTION
+-removedefine PNG_IMPEXP
+-removedefine PNG_LINKAGE*
+-removedefine PNG_NO_MODULEDEF
+-removedefine PNG_NORETURN
+-removedefine PNG_PRIVATE
+-removedefine PNG_REMOVED
+-removedefine PNG_RESTRICT
+-removedefine PNG_UNUSED
+-removedefine PNG_USE_RESULT
+
+# __restrict keyword not supported in fbc
+-removedefine PNG_RESTRICT
+
+# macros using 'extern' to expand to inside other macros
+-convbodytokens PNG_LINKAGE_API
+-convbodytokens PNG_LINKAGE_CALLBACK
+-convbodytokens PNG_LINKAGE_DATA
+-convbodytokens PNG_LINKAGE_FUNCTION
+-convbodytokens PNG_CALLBACK
+-convbodytokens PNG_FP_EXPORT
+-convbodytokens PNG_FIXED_EXPORT
+
+-removedefine png_get_uint_32
+-removedefine png_get_uint_16
+-removedefine png_get_int_32
+
+-renamedefine png_get_uint_32 PNG_get_uint_32_
+-renamedefine png_get_uint_16 PNG_get_uint_16_
+-renamedefine png_get_int_32 PNG_get_int_32_
+
+-rename_ PNG_get_uint_32
+-rename_ PNG_get_uint_16
+-rename_ PNG_get_int_32

@@ -83,6 +83,16 @@ Tools Used
 Available Packages
 ------------------
 
+  libpng 1.6.40 - PNG Reference Library
+  * Copyright (c) 1995-2023 The PNG Reference Library Authors.
+
+     http://www.libpng.org
+
+     Files for Load Out:
+       doc/libgpng-license.txt
+       inc/png16.bi
+       lib/<target>/libpng16.a
+
   zlib 1.3 - Data Compression Library
   (C) 1995-2023 Jean-loup Gailly and Mark Adler
 

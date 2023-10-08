@@ -31,6 +31,7 @@ usage() {
 	echo "   mingw-w64-gcc-11.2.0  building with mingw-w64 gcc-11.2.0 toolchain"
 	echo "package:"
 	echo "   none              don't build, but allow --clean-build"
+	echo "   libpng-1.6.40     libpng version 1.6.40"
 	echo "   zlib-1.3          zlib version 1.3"
 	echo ""
 	exit 1
@@ -136,6 +137,12 @@ dobuild () {
 	echo "building ${arg} for ${FBCVERSION}, ${TARGET}-${TOOLCHAIN}"
 
 	case $arg in
+	libpng-1.6.40)
+		# download_source http://prdownloads.sourceforge.net/libpng/ lpng1640.zip?download libpng-1.6.40.zip
+		download_source https://download.sourceforge.net/libpng/ libpng-1.6.40.tar.xz libpng-1.6.40.tar.xz
+		# extract_package libpng-1.6.40.zip lpng1640 libpng-1.6.40
+		extract_package libpng-1.6.40.tar.xz libpng-1.6.40
+		;;
 #	zlib-1.2.8)
 #		download_source https://github.com/madler/zlib/archive/refs/tags/ v1.2.8.zip zlib-1.2.8.zip
 #		extract_package zlib-1.2.8.zip zlib-1.2.8
@@ -206,6 +213,9 @@ do
 	--keep-build|-keep-build|keep-build)
 		DOCLEAN="keep-build"
 		;;
+	libpng-1.6.40)
+		PACKAGEID="$arg"
+		;;
 	zlib-1.3)
 		PACKAGEID="$arg"
 		;;
@@ -251,6 +261,7 @@ if [ "${DOALL}" = "yes" ]; then
 
 	# list all packages here
 	dobuild zlib-1.3
+	dobuild libpng-1.6.40
 
 	if [ "${DOCLEAN}" = "build" ]; then
 		echo "removing build directory"
