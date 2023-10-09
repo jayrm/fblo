@@ -30,6 +30,14 @@ endif
 
 SRCDIR := build/$(PACKAGE)
 
+ROOTDIR := output
+ifneq ($(FBCVERSION),)
+ROOTDIR := $(ROOTDIR)/$(FBCVERSION)
+endif
+ifneq ($(TOOLCHAIN),)
+ROOTDIR := $(ROOTDIR)/$(TOOLCHAIN)
+endif
+
 INCDIR := inc
 LIBDIR := lib
 DOCDIR := doc

@@ -31,6 +31,7 @@ usage() {
 	echo "   mingw-w64-gcc-11.2.0  building with mingw-w64 gcc-11.2.0 toolchain"
 	echo "package:"
 	echo "   none              don't build, but allow --clean-build"
+	echo "   jayrm-fbfrog      jayrm fork of fbfrog version"
 	echo "   libpng-1.6.40     libpng version 1.6.40"
 	echo "   zlib-1.3          zlib version 1.3"
 	echo ""
@@ -67,15 +68,18 @@ download_source() {
 extract_package() {
 	package="./cache/$1"
 	blddir="./build"
-	outdir="$blddir/$2"
-
-	if [ -d "$outdir" ]; then
-		# rm -rf $outdir
-		echo "cached      $outdir"
-		return
+	outdir1="$blddir/$2"
+	if [ -z "$3" ]; then
+		outdir2="$blddir/$2"
+	else
+		outdir2="$blddir/$3"
 	fi
 
-	if [ ! -d "$outdir" ]; then
+	if [ -d "$outdir2" ]; then
+		# rm -rf $outdir2
+		echo "cached      $outdir2"
+		return
+	else
 		mkdir -p "$blddir"
 		echo "Extracting $package to $blddir"
 
@@ -94,6 +98,11 @@ extract_package() {
 			exit 1
 			;;
 		esac
+	fi
+
+	if [ "${outdir1}" != "${outdir2}" ]; then
+		echo "moving ${outdir1} to ${outdir2}"
+		mv "${outdir1}" "${outdir2}"
 	fi
 }
 
@@ -137,16 +146,21 @@ dobuild () {
 	echo "building ${arg} for ${FBCVERSION}, ${TARGET}-${TOOLCHAIN}"
 
 	case $arg in
+	jayrm-fbfrog)
+		fbfrog_sha1=03bc64bfae9a85852687548c37180865303e452e
+		download_source https://github.com/jayrm/fbfrog/archive/ ${fbfrog_sha1}.zip fbfrog-${fbfrog_sha1}.zip
+		extract_package fbfrog-${fbfrog_sha1}.zip fbfrog-${fbfrog_sha1} jayrm-fbfrog
+		;;
 	libpng-1.6.40)
 		# download_source http://prdownloads.sourceforge.net/libpng/ lpng1640.zip?download libpng-1.6.40.zip
 		download_source https://download.sourceforge.net/libpng/ libpng-1.6.40.tar.xz libpng-1.6.40.tar.xz
 		# extract_package libpng-1.6.40.zip lpng1640 libpng-1.6.40
 		extract_package libpng-1.6.40.tar.xz libpng-1.6.40
 		;;
-#	zlib-1.2.8)
-#		download_source https://github.com/madler/zlib/archive/refs/tags/ v1.2.8.zip zlib-1.2.8.zip
-#		extract_package zlib-1.2.8.zip zlib-1.2.8
-#		;;
+#   zlib-1.2.8)
+#       download_source https://github.com/madler/zlib/archive/refs/tags/ v1.2.8.zip zlib-1.2.8.zip
+#       extract_package zlib-1.2.8.zip zlib-1.2.8
+#       ;;
 	zlib-1.3)
 		# https://github.com/madler/zlib/releases/download/v1.3/zlib13.zip
 		download_source https://www.zlib.net/ zlib13.zip zlib-1.3.zip
@@ -213,6 +227,9 @@ do
 	--keep-build|-keep-build|keep-build)
 		DOCLEAN="keep-build"
 		;;
+	jayrm-fbfrog)
+		PACKAGEID="$arg"
+		;;
 	libpng-1.6.40)
 		PACKAGEID="$arg"
 		;;
@@ -260,6 +277,7 @@ fi
 if [ "${DOALL}" = "yes" ]; then
 
 	# list all packages here
+	dobuild jayrm-fbfrog
 	dobuild zlib-1.3
 	dobuild libpng-1.6.40
 

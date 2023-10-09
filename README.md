@@ -83,15 +83,28 @@ Tools Used
 Available Packages
 ------------------
 
+  fbfrog: A binding generator for FreeBASIC
+  Copyright (C) 2011 - 2016  Daniel C. Klauer <daniel.c.klauer[at]web.de>
+
+     https://github.com/freebasic/fbfrog
+     Forked version at https://github.com/jayrm/fbfrog
+
+     Files for Load Out:
+       ./doc/fbfrog-license.txt
+       ./fbfrog.exe
+       ./fbfrog/*
+
+
   libpng 1.6.40 - PNG Reference Library
   * Copyright (c) 1995-2023 The PNG Reference Library Authors.
 
      http://www.libpng.org
 
      Files for Load Out:
-       doc/libgpng-license.txt
-       inc/png16.bi
-       lib/<target>/libpng16.a
+       ./doc/libgpng-license.txt
+       ./inc/png16.bi
+       ./lib/<target>/libpng16.a
+
 
   zlib 1.3 - Data Compression Library
   (C) 1995-2023 Jean-loup Gailly and Mark Adler
@@ -99,8 +112,8 @@ Available Packages
      https://www.zlib.net/
 
      Files for Load Out:
-       doc/zlib-license.txt
-       inc/zlib.bi
-       lib/<target>/libz.a
+       ./doc/zlib-license.txt
+       ./inc/zlib.bi
+       ./lib/<target>/libz.a
 
 
