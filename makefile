@@ -25,14 +25,9 @@ endif
 
 DSTPREFIX := fblo-${FBLO_VERSION}
 DSTDIR    := distros
-SRCDIRS   := doc inc lib
 OUTDIR    := output/$(FBCVERSION)/$(TOOLCHAIN)
 
-SRCFILES  := $(wildcard $(OUTDIR)/doc/*)
-SRCFILES  += $(wildcard $(OUTDIR)/inc/*)
-SRCFILES  += $(wildcard $(OUTDIR)/lib/*)
-SRCFILES  += $(wildcard $(OUTDIR)/lib/win32/*)
-SRCFILES  += $(wildcard $(OUTDIR)/lib/win64/*)
+SRCFILES  := $(shell find $(OUTDIR) -type f -printf "%p ")
 
 ZIPNAME   := $(DSTPREFIX)-$(FBCVERSION)-$(TOOLCHAIN)
 
