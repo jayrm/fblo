@@ -23,19 +23,33 @@ setlocal
 	goto DONE
 
 @Rem ======================================================
-:BUILD120
+:BUILD
+	@rem %1 = FBCVERSION
+	@rem %2 = TOOLCHAIN
 
-	sh -c "make -s P7ZIP=%P7ZIP% FBC=%FBC32% FBCVERSION=fbc-1.20.0 TOOLCHAIN=winlibs-gcc-9.3.0"
-	sh -c "make -s P7ZIP=%P7ZIP% FBC=%FBC32% FBCVERSION=fbc-1.20.0 TOOLCHAIN=mingw-w64-gcc-5.2.0"
-	sh -c "make -s P7ZIP=%P7ZIP% FBC=%FBC32% FBCVERSION=fbc-1.20.0 TOOLCHAIN=mingw-w64-gcc-11.2.0"
+	if /i "%1" == "" exit /b
+	if /i "%2" == "" exit /b
+	if not exist output\%1\%2\ exit /b
+
+	sh -c "make -s P7ZIP=%P7ZIP% FBC=%FBC32% FBCVERSION=%1 TOOLCHAIN=%2"
+	exit /b
+
+@Rem ======================================================
+:BUILD120
+	if not exist output\fbc-1.20.0\ exit /b
+
+	call :BUILD fbc-1.20.0 mingw-w64-gcc-11.2.0
+	call :BUILD fbc-1.20.0 winlibs-gcc-9.3.0
+	call :BUILD fbc-1.20.0 mingw-w64-gcc-5.2.0
 	exit /b
 
 @Rem ======================================================
 :BUILD110
+	if not exist output\fbc-1.10.0\ exit /b
 
-	sh -c "make -s P7ZIP=%P7ZIP% FBC=%FBC32% FBCVERSION=fbc-1.10.0 TOOLCHAIN=winlibs-gcc-9.3.0"
-	sh -c "make -s P7ZIP=%P7ZIP% FBC=%FBC32% FBCVERSION=fbc-1.10.0 TOOLCHAIN=mingw-w64-gcc-5.2.0"
-	sh -c "make -s P7ZIP=%P7ZIP% FBC=%FBC32% FBCVERSION=fbc-1.10.0 TOOLCHAIN=mingw-w64-gcc-11.2.0"
+	call :BUILD fbc-1.10.0 mingw-w64-gcc-11.2.0
+	call :BUILD fbc-1.10.0 winlibs-gcc-9.3.0
+	call :BUILD fbc-1.10.0 mingw-w64-gcc-5.2.0
 	exit /b
 
 @Rem ======================================================
