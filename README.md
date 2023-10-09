@@ -9,11 +9,11 @@ The repository itself contains the scripts needed to build the win32/win64
 libraries from sources.
 
 
-LICENSE
+License
 -------
 See ./LICENSE.txt in the top level directory
 
-In releases, see ./doc/<package>-license.txt for builds of projects included
+In releases, see ./doc/{package}-license.txt for builds of projects included
 in each distribution package.
 
 
@@ -45,26 +45,26 @@ The batch files and scripts require toolchains to be pre-installed at some
 known locations and (sorry) some paths are currently hard coded. (perhaps
 in a future version this will be more easily configured).
 
-  Build environment (32-bit and 64-bit versions)
-    c:/msys32/mingw32, c:/msys32/usr/bin
-    c:/msys64/mingw64, c:/msys64/usr/bin
-    Base install plus 'make tar zip p7zip git wget curl'
+  * Build environment (32-bit and 64-bit versions)
+    - c:/msys32/mingw32, c:/msys32/usr/bin
+    - c:/msys64/mingw64, c:/msys64/usr/bin
+    - Base install plus 'make tar zip p7zip git wget curl'
 
-  FreeBASIC (32-bit and 64-bit versions)
-    d:/fb.git/fbc-win32.exe
-    d:/fb.git/fbc-win64.exe
-    d:/fb.1.10/fbc-win32.exe
-    d:/fb.1.10/fbc-win64.exe
-    d:/fb.1.20/fbc-win32.exe
-    d:/fb.1.20/fbc-win64.exe
+  * FreeBASIC (32-bit and 64-bit versions)
+    - d:/fb.git/fbc-win32.exe
+    - d:/fb.git/fbc-win64.exe
+    - d:/fb.1.10/fbc-win32.exe
+    - d:/fb.1.10/fbc-win64.exe
+    - d:/fb.1.20/fbc-win32.exe
+    - d:/fb.1.20/fbc-win64.exe
 
-  gnu gcc toolchains (32-bit and 64-bit versions)
-    c:/winlibs-9.3/mingw32    , c:/winlibs-9.3/mingw64
-    c:/mingw-w64-5.2/mingw32  , c:/mingw-w64-5.2/mingw64
-    c:/mingw-w64-11.2/mingw32 , c:/mingw-w64-11.2/mingw64
+  * gnu gcc toolchains (32-bit and 64-bit versions)
+    - c:/winlibs-9.3/mingw32    , c:/winlibs-9.3/mingw64
+    - c:/mingw-w64-5.2/mingw32  , c:/mingw-w64-5.2/mingw64
+    - c:/mingw-w64-11.2/mingw32 , c:/mingw-w64-11.2/mingw64
 
-  fbfrog:
-    d:/fbfrog.git/fbfrog.exe
+  * fbfrog:
+    - d:/fbfrog.git/fbfrog.exe
 
 
 Tools Used
@@ -82,38 +82,37 @@ Tools Used
 
 Available Packages
 ------------------
+  + fbfrog: A binding generator for FreeBASIC
+    * Copyright (C) 2011 - 2016  Daniel C. Klauer <daniel.c.klauer[at]web.de>
 
-  fbfrog: A binding generator for FreeBASIC
-  Copyright (C) 2011 - 2016  Daniel C. Klauer <daniel.c.klauer[at]web.de>
+    * https://github.com/freebasic/fbfrog
+    * Forked version at https://github.com/jayrm/fbfrog
 
-     https://github.com/freebasic/fbfrog
-     Forked version at https://github.com/jayrm/fbfrog
-
-     Files for Load Out:
-       ./doc/fbfrog-license.txt
-       ./fbfrog.exe
-       ./fbfrog/*
-
-
-  libpng 1.6.40 - PNG Reference Library
-  * Copyright (c) 1995-2023 The PNG Reference Library Authors.
-
-     http://www.libpng.org
-
-     Files for Load Out:
-       ./doc/libgpng-license.txt
-       ./inc/png16.bi
-       ./lib/<target>/libpng16.a
+    * Files for Load Out:
+      - ./doc/fbfrog-license.txt
+      - ./fbfrog.exe
+      - ./fbfrog/*
 
 
-  zlib 1.3 - Data Compression Library
-  (C) 1995-2023 Jean-loup Gailly and Mark Adler
+  + libpng 1.6.40 - PNG Reference Library
+    * Copyright (c) 1995-2023 The PNG Reference Library Authors
 
-     https://www.zlib.net/
+    * http://www.libpng.org
 
-     Files for Load Out:
-       ./doc/zlib-license.txt
-       ./inc/zlib.bi
-       ./lib/<target>/libz.a
+    * Files for Load Out:
+      - ./doc/libgpng-license.txt
+      - ./inc/png16.bi
+      - ./lib/{target}/libpng16.a
+
+
+  + zlib 1.3 - Data Compression Library
+    * Copyright (C) 1995-2023 Jean-loup Gailly and Mark Adler
+
+    * https://www.zlib.net/
+
+    * Files for Load Out:
+      - ./doc/zlib-license.txt
+      - ./inc/zlib.bi
+      - ./lib/{target}/libz.a
 
 
