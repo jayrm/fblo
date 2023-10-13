@@ -57,6 +57,19 @@ Packages Included in the Load Out
       - ./fbfrog/*
 
 
+  + fbpng 3.2.z: FreeBASIC PNG Library
+    * Copyright (C) 2007-2010 Simon Nash/Eric Cowles
+    * Copyright (C) 2022 Ebben Feagan
+
+    * https://github.com/mudhairless/fbpng/
+
+    * Files for Load Out:
+      - ./doc/fbpng-license.txt
+      - ./inc/fbpng/*.bi
+      - ./lib/win32/libfbpng.a
+      - ./lib/win64/libfbpng.a
+
+
   + libpng 1.6.40 - PNG Reference Library
     * Copyright (c) 1995-2023 The PNG Reference Library Authors
 
