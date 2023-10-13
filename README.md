@@ -3,7 +3,7 @@ JayRM's FreeBASIC Load Out
 Prebuilt libraries for win32/win64 and source files that can be can be dropped
 in to an existing FreeBASIC install.
 
-Version 0.2
+Version 0.3
 
 The repository itself contains the scripts needed to build the win32/win64
 libraries from sources.
@@ -22,7 +22,7 @@ How to Install a Prebuilt Load Out
   1) Download the release package that matches your version version of freebasic.
 
      For example: for FreeBASIC 1.10.0 using winlibs gcc-9.3 toolchain:
-        fblo-0.2-fbc-1.10.0-winlibs-gcc-9.3.0.7z
+        fblo-0.3-fbc-1.10.0-winlibs-gcc-9.3.0.7z
 
   2) Extract in to your FreeBASIC installation.
      **careful!** - some files may be replaced
