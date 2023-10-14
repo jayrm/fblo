@@ -33,6 +33,7 @@ usage() {
 	echo "   mingw-w64-gcc-11.2.0  building with mingw-w64 gcc-11.2.0 toolchain"
 	echo "package:"
 	echo "   none              don't build, but allow --clean-build"
+	echo "   fblo              freebasic load out specifics"
 	echo "   jayrm-fbfrog      jayrm fork of fbfrog version"
 	echo "   libpng-1.6.40     libpng version 1.6.40"
 	echo "   zlib-1.3          zlib version 1.3"
@@ -152,6 +153,8 @@ dobuild () {
 	echo "building ${arg} for ${FBCVERSION}, ${FBCTARGET}-${TOOLCHAIN}"
 
 	case $arg in
+	fblo)
+		;;
 	jayrm-fbfrog)
 		fbfrog_sha1=03bc64bfae9a85852687548c37180865303e452e
 		download_source https://github.com/jayrm/fbfrog/archive/ ${fbfrog_sha1}.zip fbfrog-${fbfrog_sha1}.zip
@@ -238,6 +241,9 @@ do
 	--dry-run|-dry-run|-dry-run)
 		DODRYRUN="Y"
 		;;
+	fblo)
+		FBLOPACKAGE="$arg"
+		;;
 	jayrm-fbfrog)
 		FBLOPACKAGE="$arg"
 		;;
@@ -288,6 +294,7 @@ fi
 if [ "${DOALL}" = "yes" ]; then
 
 	# list all packages here
+	dobuild fblo
 	dobuild jayrm-fbfrog
 	dobuild zlib-1.3
 	dobuild libpng-1.6.40

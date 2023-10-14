@@ -37,6 +37,7 @@ usage() {
 	echo "   mingw-w64-gcc-11.2.0  building with mingw-w64 gcc-11.2.0 toolchain"
 	echo "package:"
 	echo "   none              don't build, but allow --clean-build"
+	echo "   fblo              freebasic load out specifics"
 	echo "   jayrm-fbfrog      jayrm fork of fbfrog version"
 	echo "   libpng-1.6.40     libpng version 1.6.40"
 	echo "   zlib-1.3          zlib version 1.3"
@@ -130,6 +131,9 @@ do
 		DOCLEAN="keep-build"
 		;;
 	none)
+		FBLOPACKAGE="$arg"
+		;;
+	fblo)
 		FBLOPACKAGE="$arg"
 		;;
 	jayrm-fbfrog)

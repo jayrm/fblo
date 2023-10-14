@@ -15,7 +15,7 @@
 #   INCDIR        ROOTDIR/FBCVERSION/TOOLCHAIN/inc
 #   LIBDIR        ROOTDIR/FBCVERSION/TOOLCHAIN/lib/FBCTARGET
 #   DOCDIR        ROOTDIR/FBCVERSION/TOOLCHAIN/doc
-#       
+#
 # Programs:
 #   FBC           fbc to use for building fbc sources
 #   EXEEXT        default executable extension expected on target platform

@@ -5,19 +5,22 @@ in to an existing standalone FreeBASIC install.
 
 Version 0.3
 
-The repository itself contains the scripts needed to build the win32/win64
+The repository contains the scripts needed to build the win32/win64
 libraries from sources.
+
+The release packages contain the prebuilt binaries and supporting
+files.
 
 
 License
 -------
-For sources see ./LICENSE.txt in the top level directory of sources.
+For binary releases, see ./doc/{package}-license.txt for licenses
+of each package built for inclusion in the distribution package.
 
-For releases, see ./doc/{package}-license.txt for builds of projects included
-in each distribution package.
+For the source repository, see ./LICENSE.txt in the top level directory.
 
 
-How to Install a Prebuilt Load Out
+Installing a Prebuilt Load Out
 -----------------------------------
   1) Download the release package that matches your version version of freebasic.
 
@@ -78,10 +81,20 @@ Tools Used
     - MinGW-w64     https://mingw-w64.org/
                     https://github.com/niXman/mingw-builds-binaries/
     - WinLibs       https://www.winlibs.com/
+    - fblo          https://github.com/jayrm/fblo
 
 
 Available Packages
 ------------------
+
+  + fblo: JayRM's FreeBASIC Load Out
+    * Copyright (C) 2023 Jeff Marshall <coder[at]execulink.com>
+
+    * Files for Load Out:
+      - ./fblo-readme.txt
+      - ./doc/fblo-license.txt
+
+
   + fbfrog: A binding generator for FreeBASIC
     * Copyright (C) 2011 - 2016  Daniel C. Klauer <daniel.c.klauer[at]web.de>
 
