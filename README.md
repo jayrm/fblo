@@ -57,6 +57,38 @@ Packages Included in the Load Out
       - ./fbfrog/*
 
 
+  + fbimage: Load BMP, PNG, JPG, TGA, DDS from file or memory as FBImage
+
+    * subset of SOIL library assembled by D.J.Peters (Joshy)
+      https://shiny3d.de/public/libs/FBImage.zip
+
+    * stb_image_write - v1.02
+      - writes out PNG/BMP/TGA images to C stdio
+      - public domain
+      - http://nothings.org/stb/stb_image_write.h
+      - Sean Barrett 2010-2015
+      - no warranty implied; use at your own risk
+
+    * Simple OpenGL Image Library
+      - Jonathan Dummer 2007-07-26-10.36
+      - public domain
+      - using Sean Barret's stb_image as a base
+
+    * simple DXT compression / decompression code
+      - Jonathan Dummer - 2007-07-31-10.32
+      - public domain
+
+    * image helper functions
+      - Jonathan Dummer
+      - MIT license
+
+    * Files for Load Out:
+      - ./doc/FBImage-license.txt
+      - ./inc/FBImage.bi
+      - ./lib/win32/libFBImage-32-static.a
+      - ./lib/win64/libFBImage-64-static.a
+
+
   + fbpng 3.2.z: FreeBASIC PNG Library
     * Copyright (C) 2007-2010 Simon Nash/Eric Cowles
     * Copyright (C) 2022 Ebben Feagan

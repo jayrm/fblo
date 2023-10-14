@@ -35,6 +35,7 @@ usage() {
 	echo "   none              don't build, but allow --clean-build"
 	echo "   fblo              freebasic load out specifics"
 	echo "   fbfrog-jayrm      fbfrog (jayrm fork of freebasic/fbfrog)"
+	echo "   FBImage-20171102  FBImage version 2017-11-02"
 	echo "   fbpng-3.2.z       fbpng version 3.2.q"
 	echo "   libpng-1.6.40     libpng version 1.6.40"
 	echo "   zlib-1.2.8        zlib version 1.2.8"
@@ -173,6 +174,10 @@ dobuild () {
 		download_source https://github.com/jayrm/fbfrog/archive/ ${fbfrog_sha1}.zip fbfrog-${fbfrog_sha1}.zip
 		extract_package fbfrog-${fbfrog_sha1}.zip fbfrog-${fbfrog_sha1} fbfrog-jayrm
 		;;
+	FBImage-20171102)
+		download_source https://shiny3d.de/public/libs/ FBImage.zip FBImage-20171102.zip
+		extract_package FBImage-20171102.zip FBImage FBImage-20171102
+		;;
 	fbpng-3.2.z)
 		download_source https://github.com/mudhairless/fbpng/archive/refs/tags/ v3.2.z.zip fbpng-3.2.z.zip
 		extract_package fbpng-3.2.z.zip fbpng-3.2.z
@@ -265,6 +270,9 @@ do
 	fbfrog-jayrm)
 		FBLOPACKAGE="$arg"
 		;;
+	FBImage-20171102)
+		FBLOPACKAGE="$arg"
+		;;
 	fbpng-3.2.z)
 		FBLOPACKAGE="$arg"
 		;;
@@ -320,6 +328,7 @@ if [ "${DOALL}" = "yes" ]; then
 	dobuild zlib-1.3
 	dobuild libpng-1.6.40
 	dobuild fbpng-3.2.z
+	dobuild FBImage-20171102
 
 	if [ "${DOCLEAN}" = "clean-build" ]; then
 		echo "removing build directory"

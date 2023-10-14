@@ -1,0 +1,8 @@
+convert c: # define MAD_VERSION MAD_VERSION_STRING(MAD_VERSION_MAJOR) "." MAD_VERSION_STRING(MAD_VERSION_MINOR) "." MAD_VERSION_STRING(MAD_VERSION_PATCH) MAD_VERSION_EXTRA
+to c: # define MAD_VERSION MAD_VERSION_STRING(MAD_VERSION_MAJOR) + "." + MAD_VERSION_STRING(MAD_VERSION_MINOR) + "." + MAD_VERSION_STRING(MAD_VERSION_PATCH) + MAD_VERSION_EXTRA
+convert c:# define mad_timer_reset(timer) ((void) (*(timer) = mad_timer_zero))
+to c:# define mad_timer_reset(timer) *(timer) = mad_timer_zero
+convert c:# define mad_stream_options(stream, opts) ((void) ((stream)->options = (opts)))
+to c:# define mad_stream_options(stream, opts) (stream)->options = (opts)
+convert c:# define mad_decoder_options(decoder, opts) ((void) ((decoder)->options = (opts)))
+to c:# define mad_decoder_options(decoder, opts) (decoder)->options = (opts)
