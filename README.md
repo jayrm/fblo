@@ -33,6 +33,53 @@ Installing a Prebuilt Load Out
      renamed fbc installation directory.
 
 
+Packages Included in the Load Out
+---------------------------------
+
+  + fblo: JayRM's FreeBASIC Load Out
+    * Copyright (C) 2023 Jeff Marshall <coder[at]execulink.com>
+
+    * Files for Load Out:
+      - ./fblo-readme.txt
+      - ./doc/fblo-license.txt
+
+
+  + fbfrog: A binding generator for FreeBASIC
+    * Copyright (C) 2011 - 2016  Daniel C. Klauer <daniel.c.klauer[at]web.de>
+
+    * https://github.com/freebasic/fbfrog
+    * Forked version at https://github.com/jayrm/fbfrog
+
+    * Files for Load Out:
+      - ./doc/fbfrog-license.txt
+      - ./fbfrog.exe
+      - ./fbfrog/*
+
+
+  + libpng 1.6.40 - PNG Reference Library
+    * Copyright (c) 1995-2023 The PNG Reference Library Authors
+
+    * http://www.libpng.org
+
+    * Files for Load Out:
+      - ./doc/libgpng-license.txt
+      - ./inc/png16.bi
+      - ./lib/win32/libpng16.a
+      - ./lib/win64/libpng16.a
+
+
+  + zlib 1.3 - Data Compression Library
+    * Copyright (C) 1995-2023 Jean-loup Gailly and Mark Adler
+
+    * https://www.zlib.net/
+
+    * Files for Load Out:
+      - ./doc/zlib-license.txt
+      - ./inc/zlib.bi
+      - ./lib/win32/libz.a
+      - ./lib/win64/libz.a
+
+
 Building the Load Out from Scratch
 -----------------------------------
 The intent is that the scripts will download source files, compile them with
@@ -82,51 +129,6 @@ Tools Used
                     https://github.com/niXman/mingw-builds-binaries/
     - WinLibs       https://www.winlibs.com/
     - fblo          https://github.com/jayrm/fblo
-
-
-Available Packages
-------------------
-
-  + fblo: JayRM's FreeBASIC Load Out
-    * Copyright (C) 2023 Jeff Marshall <coder[at]execulink.com>
-
-    * Files for Load Out:
-      - ./fblo-readme.txt
-      - ./doc/fblo-license.txt
-
-
-  + fbfrog: A binding generator for FreeBASIC
-    * Copyright (C) 2011 - 2016  Daniel C. Klauer <daniel.c.klauer[at]web.de>
-
-    * https://github.com/freebasic/fbfrog
-    * Forked version at https://github.com/jayrm/fbfrog
-
-    * Files for Load Out:
-      - ./doc/fbfrog-license.txt
-      - ./fbfrog.exe
-      - ./fbfrog/*
-
-
-  + libpng 1.6.40 - PNG Reference Library
-    * Copyright (c) 1995-2023 The PNG Reference Library Authors
-
-    * http://www.libpng.org
-
-    * Files for Load Out:
-      - ./doc/libgpng-license.txt
-      - ./inc/png16.bi
-      - ./lib/{target}/libpng16.a
-
-
-  + zlib 1.3 - Data Compression Library
-    * Copyright (C) 1995-2023 Jean-loup Gailly and Mark Adler
-
-    * https://www.zlib.net/
-
-    * Files for Load Out:
-      - ./doc/zlib-license.txt
-      - ./inc/zlib.bi
-      - ./lib/{target}/libz.a
 
 
 TODO

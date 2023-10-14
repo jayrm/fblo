@@ -302,8 +302,8 @@ if [ "${DOALL}" = "yes" ]; then
 	if [ "${DOCLEAN}" = "build" ]; then
 		echo "removing build directory"
 		rm -rf build
-		rm -rf output/${FBCVERSION}/${TOOLCHAIN}
 	fi
+
 else
 	dobuild "${FBLOPACKAGE}"
 fi
