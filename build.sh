@@ -2,13 +2,14 @@
 
 set -e
 
-PACKAGEID=
+FBLOPACKAGE=
 FBCVERSION=
 TOOLCHAIN=
-TARGET=
+FBCTARGET=
 SHOWHELP=
 DOALL=
 DOCLEAN=
+DODRYRUN=
 
 usage() {
 	echo "usage: ./build.sh [options] <target> <fbc-version> <toolchain> <package>"
@@ -19,6 +20,7 @@ usage() {
 	echo "   --clean           clean all output files"
 	echo "   --clean-build     clean only build directory"
 	echo "   --keep-build      don't clean build directory before building"
+	echo "   --dry-run         do everything except the actual build"
 	echo "targets:"
 	echo "   win32             build output for win32 x86 target"
 	echo "   win64             build output for win64 x86_64 target"
@@ -40,7 +42,7 @@ usage() {
 
 download() {
 	srcfile="$1"
-	url="$2/$srcFile"
+	url="$2$srcFile"
 	dstfile="$3"
 
 	if [ -f "./cache/$dstfile" ]; then
@@ -66,6 +68,10 @@ download_source() {
 }
 
 extract_package() {
+	# $1 = archive file name
+	# $2 = top level directory filename in archive
+	# $3 = renamed directory (optional)
+
 	package="./cache/$1"
 	blddir="./build"
 	outdir1="$blddir/$2"
@@ -79,26 +85,26 @@ extract_package() {
 		# rm -rf $outdir2
 		echo "cached      $outdir2"
 		return
-	else
-		mkdir -p "$blddir"
-		echo "Extracting $package to $blddir"
-
-		case $srcfile in
-		*.zip)
-			unzip -q "$package" -d "$blddir"
-			;;
-		*.tar.xz)
-			tar -xf "$package" -C "$blddir"
-			;;
-		*.7z)
-			7z x "$package" -y -bd -o$blddir > nul
-			;;
-		*)
-			echo "unsupported format $package"
-			exit 1
-			;;
-		esac
 	fi
+
+	mkdir -p "$blddir"
+	echo "Extracting $package to $blddir"
+
+	case $package in
+	*.zip)
+		unzip -q "$package" -d "$blddir"
+		;;
+	*.tar.xz|*.tar.gz)
+		tar -xf "$package" -C "$blddir"
+		;;
+	*.7z)
+		7z x "$package" -y -bd -o$blddir > nul
+		;;
+	*)
+		echo "unsupported format $package"
+		exit 1
+		;;
+	esac
 
 	if [ "${outdir1}" != "${outdir2}" ]; then
 		echo "moving ${outdir1} to ${outdir2}"
@@ -112,19 +118,19 @@ domake() {
 
 	case ${mkgoal} in
 	clean)
-		echo "cleaning ${arg} for ${FBCVERSION}, ${TARGET}-${TOOLCHAIN}"
+		echo "cleaning ${arg} for ${FBCVERSION}, ${FBCTARGET}-${TOOLCHAIN}"
 		;;
 	clean-build)
 		echo "cleaning ${arg} build directory"
 		;;
 	keep-build)
-		echo "warning: not cleaning ${arg} before building ${FBCVERSION}, ${TARGET}-${TOOLCHAIN}"
+		echo "warning: not cleaning ${arg} before building ${FBCVERSION}, ${FBCTARGET}-${TOOLCHAIN}"
 		mkgoal="all"
 		;;
 	esac
 
 	make -f "./scripts/${mkfile}" $mkgoal \
-		TARGET=${TARGET} \
+		FBCTARGET=${FBCTARGET} \
 		FBCVERSION=${FBCVERSION} TOOLCHAIN=${TOOLCHAIN} \
 		FBC=${FBC} FBFROG=${FBFROG}
 }
@@ -143,7 +149,7 @@ dobuild () {
 		;;
 	esac
 
-	echo "building ${arg} for ${FBCVERSION}, ${TARGET}-${TOOLCHAIN}"
+	echo "building ${arg} for ${FBCVERSION}, ${FBCTARGET}-${TOOLCHAIN}"
 
 	case $arg in
 	jayrm-fbfrog)
@@ -172,7 +178,9 @@ dobuild () {
 		;;
 	esac
 
-	domake ${mkfile} all
+	if [ ! "${DRYRUN}" = "Y" ]; then
+		domake ${mkfile} all
+	fi
 }
 
 # show usage if no arguments
@@ -192,10 +200,10 @@ do
 		;;
 	--all|all)
 		DOALL="yes"
-		PACKAGEID="all"
+		FBLOPACKAGE="all"
 		;;
 	win32|win64)
-		TARGET="$arg"
+		FBCTARGET="$arg"
 		;;
 	winlibs-gcc-9.3.0)
 		TOOLCHAIN="$arg"
@@ -227,14 +235,17 @@ do
 	--keep-build|-keep-build|keep-build)
 		DOCLEAN="keep-build"
 		;;
+	--dry-run|-dry-run|-dry-run)
+		DODRYRUN="Y"
+		;;
 	jayrm-fbfrog)
-		PACKAGEID="$arg"
+		FBLOPACKAGE="$arg"
 		;;
 	libpng-1.6.40)
-		PACKAGEID="$arg"
+		FBLOPACKAGE="$arg"
 		;;
 	zlib-1.3)
-		PACKAGEID="$arg"
+		FBLOPACKAGE="$arg"
 		;;
 	-*)
 		echo "invalid argument $arg"
@@ -254,7 +265,7 @@ if [ "${SHOWHELP}" = "yes" ]; then
 	exit 0
 fi
 
-if [ -z "${TARGET}" ]; then
+if [ -z "${FBCTARGET}" ]; then
 	echo "must specify target"
 	exit 1
 fi
@@ -269,7 +280,7 @@ if [ -z "${FBCVERSION}" ]; then
 	exit 1
 fi
 
-if [ -z "${PACKAGEID}" ]; then
+if [ -z "${FBLOPACKAGE}" ]; then
 	echo "must specify package name (or all)"
 	exit 1
 fi
@@ -287,5 +298,5 @@ if [ "${DOALL}" = "yes" ]; then
 		rm -rf output/${FBCVERSION}/${TOOLCHAIN}
 	fi
 else
-	dobuild "${PACKAGEID}"
+	dobuild "${FBLOPACKAGE}"
 fi

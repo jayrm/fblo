@@ -2,10 +2,10 @@
 
 set -e
 
-PACKAGEID=
+FBLOPACKAGE=
 FBCVERSION=
 TOOLCHAIN=
-TARGET=
+FBCTARGET=
 SHOWHELP=
 DOALL=
 DOCLEAN=
@@ -48,7 +48,7 @@ makepackage() {
 
 	export FBFROG=${FBFROGEXE}
 	export FBC=${FBCEXE}
-	case $TARGET in
+	case $FBCTARGET in
 	win32)
 		SUBSYSTEM=mingw32
 		;;
@@ -62,7 +62,7 @@ makepackage() {
 	export AR=${TOOLCHAINPREFIX}/${SUBSYSTEM}/bin/ar.exe
 	export CC=${TOOLCHAINPREFIX}/${SUBSYSTEM}/bin/gcc.exe
 
-	./build.sh ${FBCVERSION} ${TARGET} ${TOOLCHAIN} ${PACKAGEID} ${DOCLEAN}
+	./build.sh ${FBCVERSION} ${FBCTARGET} ${TOOLCHAIN} ${FBLOPACKAGE} ${DOCLEAN}
 }
 
 # show usage if no arguments
@@ -82,7 +82,7 @@ do
 		;;
 	--all|all)
 		DOALL="yes"
-		PACKAGEID="all"
+		FBLOPACKAGE="all"
 		;;
 	--fbc)
 		shift
@@ -97,7 +97,7 @@ do
 		TOOLCHAINPREFIX="$1"
 		;;
 	win32|win64)
-		TARGET="$arg"
+		FBCTARGET="$arg"
 		;;
 	winlibs-gcc-9.3.0)
 		TOOLCHAIN="$arg"
@@ -130,16 +130,16 @@ do
 		DOCLEAN="keep-build"
 		;;
 	none)
-		PACKAGEID="$arg"
+		FBLOPACKAGE="$arg"
 		;;
 	jayrm-fbfrog)
-		PACKAGEID="$arg"
+		FBLOPACKAGE="$arg"
 		;;
 	libpng-1.6.40)
-		PACKAGEID="$arg"
+		FBLOPACKAGE="$arg"
 		;;
 	zlib-1.3)
-		PACKAGEID="$arg"
+		FBLOPACKAGE="$arg"
 		;;
 	-*)
 		echo "invalid argument $arg"
@@ -169,13 +169,13 @@ if [ -z "${FBCVERSION}" ]; then
 	exit 1
 fi
 
-if [ -z "${TARGET}" ]; then
+if [ -z "${FBCTARGET}" ]; then
 	echo "must specify target"
 	exit 1
 fi
 
-if [ -z "${PACKAGEID}" ]; then
-	PACKAGEID="all"
+if [ -z "${FBLOPACKAGE}" ]; then
+	FBLOPACKAGE="all"
 fi
 
 if [ -z "${TOOLCHAINPREFIX}" ]; then

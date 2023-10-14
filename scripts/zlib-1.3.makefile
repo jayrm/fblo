@@ -2,11 +2,11 @@
 # - build zlib.bi header
 # - build libz.a static library
 
-PACKAGE=zlib-1.3
+FBLOPACKAGE=zlib-1.3
 
 include ./scripts/common.mk
 
-FBFROG_SCRIPT := ./scripts/$(PACKAGE).fbfrog
+FBFROG_SCRIPT := ./scripts/$(FBLOPACKAGE).fbfrog
 TRANSLATOR    := ./scripts/translator.txt
 FBFROGHEADER  := $(SRCDIR)/fbfrog-header.tmp
 
@@ -19,8 +19,8 @@ all: $(TARGETS)
 
 $(INCDIR)/zlib.bi : $(SRCDIR)/zlib.h $(FBFROG_SCRIPT) $(DOCDIR)/zlib-license.txt $(FBFROGHEADER)
 	$(QUIET_MKDIR) -p $(INCDIR)
-	# $(QUIET_FBFROG) $^ -title $(PACKAGE) $(FBFROGHEADER) $(TRANSLATOR) -o $@
-	$(QUIET_FBFROG) $(FBFROG_SCRIPT) -o $@ $(SRCDIR)/zlib.h -title $(PACKAGE) $(FBFROGHEADER) $(TRANSLATOR)
+	# $(QUIET_FBFROG) $^ -title $(FBLOPACKAGE) $(FBFROGHEADER) $(TRANSLATOR) -o $@
+	$(QUIET_FBFROG) $(FBFROG_SCRIPT) -o $@ $(SRCDIR)/zlib.h -title $(FBLOPACKAGE) $(FBFROGHEADER) $(TRANSLATOR)
 
 $(FBFROGHEADER) : $(DOCDIR)/zlib-license.txt
 	$(QUIET_ECHO) "  zlib.h" > $@

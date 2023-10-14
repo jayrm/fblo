@@ -1,12 +1,17 @@
 # makefile for fbfrog (jayrm fork)
 # - build fbfrog.exe
+#
 
-PACKAGE=jayrm-fbfrog
+FBLOPACKAGE=jayrm-fbfrog
 
 include ./scripts/common.mk
 
-TARGETS := $(ROOTDIR)/fbfrog.exe
-TARGETS += $(DOCDIR)/fbfrog-license.txt
+TARGETS := $(DOCDIR)/fbfrog-license.txt
+
+# only build fbfrog.exe for 32-bit, it will work on 64-bit too
+ifeq ($(FBCTARGET),win32)
+	TARGETS += $(ROOTDIR)/fbfrog.exe
+endif
 
 .phony : all
 all: $(TARGETS)

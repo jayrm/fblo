@@ -13,6 +13,8 @@
 #    mingw-w64-gcc-11.2.0  building with mingw-w64 gcc-11.2.0 toolchain
 #
 
+FBLODISTRO := 1
+
 include ./scripts/common.mk
 
 ifndef FBCVERSION

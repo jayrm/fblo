@@ -2,11 +2,11 @@
 # - translate libpng.h header to freebasic png16.bi header
 # - build static library
 
-PACKAGE=libpng-1.6.40
+FBLOPACKAGE=libpng-1.6.40
 
 include ./scripts/common.mk
 
-FBFROG_SCRIPT := ./scripts/$(PACKAGE).fbfrog
+FBFROG_SCRIPT := ./scripts/$(FBLOPACKAGE).fbfrog
 TRANSLATOR    := ./scripts/translator.txt
 FBFROGHEADER  := $(SRCDIR)/fbfrog-header.tmp
 
@@ -23,8 +23,7 @@ $(INCDIR)/png16.bi : $(SRCDIR)/png.h $(FBFROG_SCRIPT) $(DOCDIR)/libpng-license.t
 	$(QUIET_MKDIR) -p $(INCDIR)
 	$(QUIET_FBFROG) -incdir $(ZLIBDIR) \
 		$(FBFROG_SCRIPT) -o $@ $(SRCDIR)/png.h \
-		-title $(PACKAGE) $(FBFROGHEADER) $(TRANSLATOR)
-
+		-title $(FBLOPACKAGE) $(FBFROGHEADER) $(TRANSLATOR)
 
 $(FBFROGHEADER) : $(DOCDIR)/libpng-license.txt
 	$(QUIET_ECHO) "  png.h" > $@

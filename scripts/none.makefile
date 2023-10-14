@@ -1,6 +1,6 @@
 # makefile for cleaning the build directory
 
-PACKAGE=none
+FBLOPACKAGE=none
 
 include ./scripts/common.mk
 

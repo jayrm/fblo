@@ -1,7 +1,7 @@
 JayRM's FreeBASIC Load Out
 --------------------------
 Prebuilt libraries for win32/win64 and source files that can be can be dropped
-in to an existing FreeBASIC install.
+in to an existing standalone FreeBASIC install.
 
 Version 0.3
 
@@ -11,9 +11,9 @@ libraries from sources.
 
 License
 -------
-See ./LICENSE.txt in the top level directory
+For sources see ./LICENSE.txt in the top level directory of sources.
 
-In releases, see ./doc/{package}-license.txt for builds of projects included
+For releases, see ./doc/{package}-license.txt for builds of projects included
 in each distribution package.
 
 
@@ -116,3 +116,8 @@ Available Packages
       - ./lib/{target}/libz.a
 
 
+TODO
+----
+  + move hard coded paths to a configuration
+  + allow configuration to select fbc versions
+  + allow configuration to select toolchains

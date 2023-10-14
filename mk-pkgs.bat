@@ -5,6 +5,7 @@ set DOCLEAN=
 set DOPACKAGE=
 set DOFBCVERSION=
 set DOTOOLCHAIN=
+set DODEBUG=
 
 @rem TODO:
 @rem   - maybe move this to a bash script?
@@ -24,6 +25,7 @@ set DOTOOLCHAIN=
 	if /I "%1" == "--help"  goto HELP
 
 	if /i "%1" == "--clean"      goto SETCLEAN
+	if /i "%1" == "--debug"      goto SETDEBUG
 	if /i "%1" == "clean"        goto SETCLEAN
 	if /i "%1" == "--keep-build" goto SETKEEPBUILD
 	if /i "%1" == "keep-build"   goto SETKEEPBUILD
@@ -32,7 +34,7 @@ set DOTOOLCHAIN=
 	if /i "%1" == "fbc-1.20.0" goto SETFBCVERSION %1
 
 	if /i "%1" == "mingw-w64-gcc-11.2.0"  goto SETTOOLCHAIN  %1
-	if /i "%1" == "winlbs-gcc-9.3.0"      goto SETTOOLCHAIN  %1
+	if /i "%1" == "winlibs-gcc-9.3.0"     goto SETTOOLCHAIN  %1
 	if /i "%1" == "mingw-w64-gcc-5.2.0"   goto SETTOOLCHAIN  %1
 
 	if NOT "%1" == "" set DOPACKAGE=%1
@@ -58,10 +60,33 @@ set DOTOOLCHAIN=
 	set DOTOOLCHAIN=%1
 	goto NEXTARG
 
+:SETDEBUG
+	set DODEBUG=Y
+	goto NEXTARG
+
+:DEBUGTOOLCHAIN
+	echo DEBUG: building %1 toolchains:
+	echo mingw-w64-gcc-11.2.0 = %domingw1120%
+	echo winlibs-gcc-9.3.0 = %dowinlibs930%
+	echo mingw-w64-gcc-5.2.0 = %domingw520%
+	pause
+	exit /b
+
+:DEBUGOPTIONS
+	echo DEBUG:
+	echo fbc version = %DOFBCVERSION%
+	echo toolchain   = %DOTOOLCHAIN%
+	echo package     = %DOPACKAGE%
+	echo clean       = %DOCLEAN%
+	pause
+	exit /b
+
 @Rem ======================================================
 :STARTBUILD
 	@rem default to clean-build (./build.sh should choose it anyway)
 	if "%DOCLEAN%" == "" set DOCLEAN=clean-build
+
+	if "%DODEBUG%" == "Y" call :DEBUGOPTIONS
 
 	if "%DOFBCVERSION%" == "" goto BUILDALL
 	if "%DOFBCVERSION%" == "fbc-1.20.0" call :BUILD120
@@ -105,6 +130,8 @@ set DOTOOLCHAIN=
 	if /i "%DOTOOLCHAIN%" == "winlibs-gcc-9.3.0" set dowinlibs930=Y
 	if /i "%DOTOOLCHAIN%" == "mingw-w64-gcc-5.2.0" set domingw520=Y
 
+	if "%DODEBUG%" == "Y" call :DEBUGTOOLCHAIN %1
+
 	exit /b
 
 @Rem ======================================================
@@ -112,7 +139,7 @@ set DOTOOLCHAIN=
 	set PATH=%MSYS32PATHS%
 	set ARGS=win32 --fbfrog %FBFROG% --fbc %FBC32% %1 %DOCLEAN% %DOPACKAGE%
 
-	call :SETTOOLCHAINS
+	call :SETTOOLCHAINS 32-bit
 
 	if /i "%domingw1120%"  == "Y" sh -c "./mk-pkg.sh %ARGS% mingw-w64-gcc-11.2.0 --prefix c:/mingw-w64-11.2"
 	if /i "%dowinlibs930%" == "Y" sh -c "./mk-pkg.sh %ARGS% winlibs-gcc-9.3.0 --prefix c:/winlibs-9.3"
@@ -124,7 +151,7 @@ set DOTOOLCHAIN=
 	set PATH=%MSYS64PATHS%
 	set ARGS=win64 --fbfrog %FBFROG% --fbc %FBC64% %1 %DOCLEAN% %DOPACKAGE%
 
-	call :SETTOOLCHAINS
+	call :SETTOOLCHAINS 64-bit
 
 	if /i "%domingw1120%"  == "Y" sh -c "./mk-pkg.sh %ARGS% mingw-w64-gcc-11.2.0 --prefix c:/mingw-w64-11.2"
 	if /i "%dowinlibs930%" == "Y" sh -c "./mk-pkg.sh %ARGS% winlibs-gcc-9.3.0 --prefix c:/winlibs-9.3"
