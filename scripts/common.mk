@@ -14,7 +14,9 @@
 #   ROOTDIR       ./output
 #   INCDIR        ROOTDIR/FBCVERSION/TOOLCHAIN/inc
 #   LIBDIR        ROOTDIR/FBCVERSION/TOOLCHAIN/lib/FBCTARGET
+#   BINDIR        ROOTDIR/FBCVERSION/TOOLCHAIN/bin/TARGET
 #   DOCDIR        ROOTDIR/FBCVERSION/TOOLCHAIN/doc
+#   BUILD_TRIPLET i686-w64-mingw32|x86_64-w64-mingw32
 #
 # Programs:
 #   FBC           fbc to use for building fbc sources
@@ -33,14 +35,17 @@ FBLO_VERSION := 0.3
 FBC    := fbc
 EXEEXT := $(shell $(FBC) -print x)
 
-ECHO   := echo
-CAT    := cat
-RM     := rm
-CP     := cp
-MKDIR  := mkdir
-MAKE   := make
-FBFROG := fbfrog
-P7ZIP  := 7z
+CMD_ECHO   := echo
+CMD_CAT    := cat
+CMD_RM     := rm
+CMD_CP     := cp
+CMD_MV     := mv
+CMD_CD     := cd
+CMD_MKDIR  := mkdir
+CMD_HEAD   := head
+CMD_U2D    := unix2dos
+
+CMD_MAKE   := make
 
 FBFROG ?= fbfrog$(EXEEXT)
 P7ZIP  ?= 7z$(EXEEXT)
@@ -48,17 +53,6 @@ P7ZIP  ?= 7z$(EXEEXT)
 AR     ?= ar
 CC     ?= gcc
 LD     ?= ld
-
-ifndef V
-QUIET_ECHO   := @$(ECHO)
-QUIET_CAT    := @$(CAT)
-QUIET_RM     := @$(RM)
-QUIET_CP     := @$(CP)
-QUIET_MKDIR  := @$(MKDIR)
-QUIET_MAKE   := @$(MAKE)
-QUIET_FBFROG := @$(FBFROG)
-QUIET_P7ZIP  := @$(P7ZIP)
-endif
 
 ifeq ($(FBLOPACKAGE),)
 ifeq ($(FBLODISTRO),)
@@ -81,27 +75,43 @@ endif
 
 INCDIR := inc
 LIBDIR := lib
+BINDIR := bin
 DOCDIR := doc
 
 ifneq ($(FBCTARGET),)
 LIBDIR := $(LIBDIR)/$(FBCTARGET)
+BINDIR := $(BINDIR)/$(FBCTARGET)
 endif
 
 ifneq ($(TOOLCHAIN),)
 INCDIR := $(TOOLCHAIN)/$(INCDIR)
 LIBDIR := $(TOOLCHAIN)/$(LIBDIR)
+BINDIR := $(TOOLCHAIN)/$(BINDIR)
 DOCDIR := $(TOOLCHAIN)/$(DOCDIR)
 endif
 
 ifneq ($(FBCVERSION),)
 INCDIR := $(FBCVERSION)/$(INCDIR)
 LIBDIR := $(FBCVERSION)/$(LIBDIR)
+BINDIR := $(FBCVERSION)/$(BINDIR)
 DOCDIR := $(FBCVERSION)/$(DOCDIR)
 endif
 
 INCDIR := output/$(INCDIR)
 LIBDIR := output/$(LIBDIR)
+BINDIR := output/$(BINDIR)
 DOCDIR := output/$(DOCDIR)
+
+ifneq ($(FBLOPACKAGE),)
+ifeq ($(FBCTARGET),win32)
+BUILD_TRIPLET := i686-w64-mingw32
+else ifeq ($(FBCTARGET),win64)
+BUILD_TRIPLET := x86_64-w64-mingw32
+else
+BUILD_TRIPLET := unknown-unknown-unknown
+$(error $(FBCTARGET) not supported)
+endif
+endif
 
 .SUFFIXES:
 

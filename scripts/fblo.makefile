@@ -18,19 +18,22 @@ TARGETS += $(DST_LICENSE)
 .phony : all
 all: $(TARGETS)
 
-$(DST_README) : $(SRC_README)
-	$(QUIET_CP) $< $@
+$(ROOTDIR):
+	$(CMD_MKDIR) -p $(ROOTDIR)
+
+$(DST_README) : $(SRC_README) | $(ROOTDIR)
+	$(CMD_CP) $< $@
 
 $(DOCDIR):
-	$(QUIET_MKDIR) -p $(DOCDIR)
+	$(CMD_MKDIR) -p $(DOCDIR)
 
 $(DST_LICENSE) : $(SRC_LICENSE) | $(DOCDIR)
-	$(QUIET_CP) $< $@
+	$(CMD_CP) $< $@
 
 .phony : clean
 clean: clean-build
-	# $(QUIET_RM) -rf $(TARGETS)
+	$(CMD_RM) -rf $(TARGETS)
 
 .phony : clean-build
 clean-build:
-	$(QUIET_RM) -rf $(SRCDIR)
+	$(CMD_RM) -rf $(SRCDIR)

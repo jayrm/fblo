@@ -38,7 +38,7 @@ usage() {
 	echo "package:"
 	echo "   none              don't build, but allow --clean-build"
 	echo "   fblo              freebasic load out specifics"
-	echo "   jayrm-fbfrog      jayrm fork of fbfrog version"
+	echo "   fbfrog-jayrm      fbfrog (jayrm fork of freebasic/fbfrog)"
 	echo "   libpng-1.6.40     libpng version 1.6.40"
 	echo "   zlib-1.3          zlib version 1.3"
 	echo ""
@@ -60,6 +60,7 @@ makepackage() {
 		SUBSYTEM=error
 		;;
 	esac
+	echo "Toolchain PATH=${PATH}"
 	export AR=${TOOLCHAINPREFIX}/${SUBSYSTEM}/bin/ar.exe
 	export CC=${TOOLCHAINPREFIX}/${SUBSYSTEM}/bin/gcc.exe
 
@@ -136,7 +137,7 @@ do
 	fblo)
 		FBLOPACKAGE="$arg"
 		;;
-	jayrm-fbfrog)
+	fbfrog-jayrm)
 		FBLOPACKAGE="$arg"
 		;;
 	libpng-1.6.40)

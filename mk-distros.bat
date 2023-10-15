@@ -31,7 +31,7 @@ setlocal
 	if /i "%2" == "" exit /b
 	if not exist output\%1\%2\ exit /b
 
-	sh -c "make -s P7ZIP=%P7ZIP% FBC=%FBC32% FBCVERSION=%1 TOOLCHAIN=%2"
+	sh -c "make -s P7ZIP=%P7ZIP% FBC=%FBC32% FBCVERSION=%1 TOOLCHAIN=%2" || goto ERROR
 	exit /b
 
 @Rem ======================================================
@@ -51,6 +51,11 @@ setlocal
 	call :BUILD fbc-1.10.0 winlibs-gcc-9.3.0
 	call :BUILD fbc-1.10.0 mingw-w64-gcc-5.2.0
 	exit /b
+
+@Rem ======================================================
+:ERROR
+	echo aborted
+	goto DONE
 
 @Rem ======================================================
 :DONE

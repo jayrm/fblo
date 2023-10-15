@@ -5,6 +5,7 @@ set DOCLEAN=
 set DOPACKAGE=
 set DOFBCVERSION=
 set DOTOOLCHAIN=
+set DOWINTARGET=
 set DODEBUG=
 
 @rem TODO:
@@ -30,12 +31,15 @@ set DODEBUG=
 	if /i "%1" == "--keep-build" goto SETKEEPBUILD
 	if /i "%1" == "keep-build"   goto SETKEEPBUILD
 
-	if /i "%1" == "fbc-1.10.0" goto SETFBCVERSION %1
-	if /i "%1" == "fbc-1.20.0" goto SETFBCVERSION %1
+	if /i "%1" == "fbc-1.10.0" goto SETFBCVERSION
+	if /i "%1" == "fbc-1.20.0" goto SETFBCVERSION
 
-	if /i "%1" == "mingw-w64-gcc-11.2.0"  goto SETTOOLCHAIN  %1
-	if /i "%1" == "winlibs-gcc-9.3.0"     goto SETTOOLCHAIN  %1
-	if /i "%1" == "mingw-w64-gcc-5.2.0"   goto SETTOOLCHAIN  %1
+	if /i "%1" == "mingw-w64-gcc-11.2.0"  goto SETTOOLCHAIN
+	if /i "%1" == "winlibs-gcc-9.3.0"     goto SETTOOLCHAIN
+	if /i "%1" == "mingw-w64-gcc-5.2.0"   goto SETTOOLCHAIN
+
+	if /i "%1" == "win32" goto SETWINTARGET
+	if /i "%1" == "win64" goto SETWINTARGET
 
 	if NOT "%1" == "" set DOPACKAGE=%1
 
@@ -50,6 +54,10 @@ set DODEBUG=
 
 :SETKEEPBUILD
 	set DOCLEAN=keep-build
+	goto NEXTARG
+
+:SETWINTARGET
+	set DOWINTARGET=%1
 	goto NEXTARG
 
 :SETFBCVERSION
@@ -141,9 +149,11 @@ set DODEBUG=
 
 	call :SETTOOLCHAINS 32-bit
 
-	if /i "%domingw1120%"  == "Y" sh -c "./mk-pkg.sh %ARGS% mingw-w64-gcc-11.2.0 --prefix c:/mingw-w64-11.2"
-	if /i "%dowinlibs930%" == "Y" sh -c "./mk-pkg.sh %ARGS% winlibs-gcc-9.3.0 --prefix c:/winlibs-9.3"
-	if /i "%domingw520%"   == "Y" sh -c "./mk-pkg.sh %ARGS% mingw-w64-gcc-5.2.0 --prefix c:/mingw-w64-5.2"
+	if /i "%DOWINTARGET%" == "win64" exit /b
+
+	if /i "%domingw1120%"  == "Y" sh -c "./mk-pkg.sh %ARGS% mingw-w64-gcc-11.2.0 --prefix /c/mingw-w64-11.2" || goto ERROR
+	if /i "%dowinlibs930%" == "Y" sh -c "./mk-pkg.sh %ARGS% winlibs-gcc-9.3.0 --prefix /c/winlibs-9.3" || goto ERROR
+	if /i "%domingw520%"   == "Y" sh -c "./mk-pkg.sh %ARGS% mingw-w64-gcc-5.2.0 --prefix /c/mingw-w64-5.2" || goto ERROR
 
 	exit /b
 
@@ -151,11 +161,13 @@ set DODEBUG=
 	set PATH=%MSYS64PATHS%
 	set ARGS=win64 --fbfrog %FBFROG% --fbc %FBC64% %1 %DOCLEAN% %DOPACKAGE%
 
+	if /i "%DOWINTARGET%" == "win32" exit /b
+
 	call :SETTOOLCHAINS 64-bit
 
-	if /i "%domingw1120%"  == "Y" sh -c "./mk-pkg.sh %ARGS% mingw-w64-gcc-11.2.0 --prefix c:/mingw-w64-11.2"
-	if /i "%dowinlibs930%" == "Y" sh -c "./mk-pkg.sh %ARGS% winlibs-gcc-9.3.0 --prefix c:/winlibs-9.3"
-	if /i "%domingw520%"   == "Y" sh -c "./mk-pkg.sh %ARGS% mingw-w64-gcc-5.2.0 --prefix c:/mingw-w64-5.2"
+	if /i "%domingw1120%"  == "Y" sh -c "./mk-pkg.sh %ARGS% mingw-w64-gcc-11.2.0 --prefix /c/mingw-w64-11.2" || goto ERROR
+	if /i "%dowinlibs930%" == "Y" sh -c "./mk-pkg.sh %ARGS% winlibs-gcc-9.3.0 --prefix /c/winlibs-9.3" || goto ERROR
+	if /i "%domingw520%"   == "Y" sh -c "./mk-pkg.sh %ARGS% mingw-w64-gcc-5.2.0 --prefix /c/mingw-w64-5.2" || goto ERROR
 
 	exit /b
 
@@ -165,6 +177,11 @@ set DODEBUG=
 	echo --clean
 	echo --keep-build
 	echo see ./build.sh for package ids
+	goto DONE
+
+@Rem ======================================================
+:ERROR
+	echo aborted
 	goto DONE
 
 @Rem ======================================================

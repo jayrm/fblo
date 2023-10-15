@@ -9,8 +9,8 @@ all:
 
 .phony : clean
 clean: clean-build
-	# $(QUIET_RM) -rf $(TARGETS)
+	# $(CMD_RM) -f $(TARGETS)
 
 .phony : clean-build
 clean-build:
-	$(QUIET_RM) -rf $(SRCDIR)
+	# $(CMD_RM) -rf $(SRCDIR)

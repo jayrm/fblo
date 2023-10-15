@@ -34,7 +34,7 @@ usage() {
 	echo "package:"
 	echo "   none              don't build, but allow --clean-build"
 	echo "   fblo              freebasic load out specifics"
-	echo "   jayrm-fbfrog      jayrm fork of fbfrog version"
+	echo "   fbfrog-jayrm      fbfrog (jayrm fork of freebasic/fbfrog)"
 	echo "   libpng-1.6.40     libpng version 1.6.40"
 	echo "   zlib-1.3          zlib version 1.3"
 	echo ""
@@ -62,7 +62,11 @@ download() {
 download_source() {
 	srcSite="$1"
 	srcFile="$2"
-	dstFile="$3"
+	if [ -z "$3" ]; then
+		dstFile="$2"
+	else
+		dstFile="$3"
+	fi
 
 	mkdir -p ./cache
 	download "$srcFile" $srcSite "$dstFile"
@@ -72,20 +76,27 @@ extract_package() {
 	# $1 = archive file name
 	# $2 = top level directory filename in archive
 	# $3 = renamed directory (optional)
+	# $4 = forced overwrite
 
 	package="./cache/$1"
 	blddir="./build"
 	outdir1="$blddir/$2"
+	forced="N"
 	if [ -z "$3" ]; then
 		outdir2="$blddir/$2"
 	else
 		outdir2="$blddir/$3"
+		if [ ! -z "$4" ]; then
+			forced="Y"
+		fi
 	fi
 
+	if [ "$forced" = "N" ]; then
 	if [ -d "$outdir2" ]; then
 		# rm -rf $outdir2
 		echo "cached      $outdir2"
 		return
+	fi
 	fi
 
 	mkdir -p "$blddir"
@@ -93,7 +104,7 @@ extract_package() {
 
 	case $package in
 	*.zip)
-		unzip -q "$package" -d "$blddir"
+		unzip -o -q "$package" -d "$blddir"
 		;;
 	*.tar.xz|*.tar.gz)
 		tar -xf "$package" -C "$blddir"
@@ -155,10 +166,10 @@ dobuild () {
 	case $arg in
 	fblo)
 		;;
-	jayrm-fbfrog)
-		fbfrog_sha1=03bc64bfae9a85852687548c37180865303e452e
+	fbfrog-jayrm)
+		fbfrog_sha1=b3fb44fa35ff772afee1be4fa5ecebeb56fdc262
 		download_source https://github.com/jayrm/fbfrog/archive/ ${fbfrog_sha1}.zip fbfrog-${fbfrog_sha1}.zip
-		extract_package fbfrog-${fbfrog_sha1}.zip fbfrog-${fbfrog_sha1} jayrm-fbfrog
+		extract_package fbfrog-${fbfrog_sha1}.zip fbfrog-${fbfrog_sha1} fbfrog-jayrm
 		;;
 	libpng-1.6.40)
 		# download_source http://prdownloads.sourceforge.net/libpng/ lpng1640.zip?download libpng-1.6.40.zip
@@ -244,7 +255,7 @@ do
 	fblo)
 		FBLOPACKAGE="$arg"
 		;;
-	jayrm-fbfrog)
+	fbfrog-jayrm)
 		FBLOPACKAGE="$arg"
 		;;
 	libpng-1.6.40)
@@ -295,11 +306,11 @@ if [ "${DOALL}" = "yes" ]; then
 
 	# list all packages here
 	dobuild fblo
-	dobuild jayrm-fbfrog
+	dobuild fbfrog-jayrm
 	dobuild zlib-1.3
 	dobuild libpng-1.6.40
 
-	if [ "${DOCLEAN}" = "build" ]; then
+	if [ "${DOCLEAN}" = "clean-build" ]; then
 		echo "removing build directory"
 		rm -rf build
 	fi

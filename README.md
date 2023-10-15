@@ -1,9 +1,7 @@
-JayRM's FreeBASIC Load Out
---------------------------
+JayRM's FreeBASIC Load Out - v0.3
+---------------------------------
 Prebuilt libraries for win32/win64 and source files that can be can be dropped
 in to an existing standalone FreeBASIC install.
-
-Version 0.3
 
 The repository contains the scripts needed to build the win32/win64
 libraries from sources.
@@ -15,9 +13,12 @@ files.
 License
 -------
 For binary releases, see ./doc/{package}-license.txt for licenses
-of each package built for inclusion in the distribution package.
+of each of the packages included with the release.
 
-For the source repository, see ./LICENSE.txt in the top level directory.
+Some header files are automatically translated from original C sources and
+the license and/or copyright statement is located at the top of each header.
+
+For the source repository itself, see ./LICENSE.txt in the top level directory.
 
 
 Installing a Prebuilt Load Out
@@ -59,7 +60,7 @@ Packages Included in the Load Out
   + libpng 1.6.40 - PNG Reference Library
     * Copyright (c) 1995-2023 The PNG Reference Library Authors
 
-    * http://www.libpng.org
+    * http://www.libpng.org/
 
     * Files for Load Out:
       - ./doc/libgpng-license.txt
@@ -98,7 +99,7 @@ in a future version this will be more easily configured).
   * Build environment (32-bit and 64-bit versions)
     - c:/msys32/mingw32, c:/msys32/usr/bin
     - c:/msys64/mingw64, c:/msys64/usr/bin
-    - Base install plus 'make tar zip p7zip git wget curl'
+    - Base install plus 'make tar zip p7zip git wget curl dos2unix'
 
   * FreeBASIC (32-bit and 64-bit versions)
     - d:/fb.git/fbc-win32.exe
@@ -113,22 +114,22 @@ in a future version this will be more easily configured).
     - c:/mingw-w64-5.2/mingw32  , c:/mingw-w64-5.2/mingw64
     - c:/mingw-w64-11.2/mingw32 , c:/mingw-w64-11.2/mingw64
 
-  * fbfrog:
+  * fbfrog (forked):
     - d:/fbfrog.git/fbfrog.exe
 
 
 Tools Used
 ----------
-    - FreeBASIC     https://www.freebasic.net
-                    https://github.com/freebasic/fbc
-    - fbfrog        https://github.com/freebasic/fbfrog
+    - FreeBASIC     https://www.freebasic.net/
+                    https://github.com/freebasic/fbc/
+    - fbfrog        https://github.com/freebasic/fbfrog/
     - GCC           https://gcc.gnu.org/
     - GNU binutils  https://gnu.org/software/binutils/
     - MinGW         https://osdn.net/projects/mingw/
     - MinGW-w64     https://mingw-w64.org/
                     https://github.com/niXman/mingw-builds-binaries/
     - WinLibs       https://www.winlibs.com/
-    - fblo          https://github.com/jayrm/fblo
+    - fblo          https://github.com/jayrm/fblo/
 
 
 TODO
@@ -136,3 +137,10 @@ TODO
   + move hard coded paths to a configuration
   + allow configuration to select fbc versions
   + allow configuration to select toolchains
+  + review makefile process - maybe shell scripts would have been simpler
+    since the extract/confgure/make/package is typically only completed
+    once for each package, the makefile is overkill (though the makefile
+    is nice to have for dealing with lots of variables, paths, and files)
+  + reduce to single target build configuration
+  + make a shell script for dealing with license file and fbfrog header
+  + use the newly build fbfrog.exe instead relying on the host install

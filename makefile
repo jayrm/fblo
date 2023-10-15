@@ -39,13 +39,13 @@ ZIPNAME   := $(DSTPREFIX)-$(FBCVERSION)-$(TOOLCHAIN)
 all: $(DSTDIR)/$(ZIPNAME).7z
 
 $(DSTDIR)/$(ZIPNAME).7z : $(SRCFILES)
-	$(QUIET_ECHO) "making $(ZIPNAME).7z"
-	$(QUIET_MKDIR) -p $(DSTDIR)
-	$(QUIET_RM) -f "$(DSTDIR)/$(ZIPNAME).7z"
-	@cd "output/$(FBCVERSION)/$(TOOLCHAIN)" && \
+	$(CMD_ECHO) "making $(ZIPNAME).7z"
+	$(CMD_MKDIR) -p $(DSTDIR)
+	$(CMD_RM) -f "$(DSTDIR)/$(ZIPNAME).7z"
+	$(CMD_CD) "output/$(FBCVERSION)/$(TOOLCHAIN)" && \
 		"$(P7ZIP)" a -r "$(ZIPNAME).7z" > /dev/nul
-	@mv "output/$(FBCVERSION)/$(TOOLCHAIN)/$(ZIPNAME).7z" "$(DSTDIR)/$(ZIPNAME).7z"
+	$(CMD_MV) "output/$(FBCVERSION)/$(TOOLCHAIN)/$(ZIPNAME).7z" "$(DSTDIR)/$(ZIPNAME).7z"
 
 .phony : clean
 clean:
-	$(QUIET_RM) -f  "$(DSTDIR)/*.7z"
+	$(CMD_RM) -f  "$(DSTDIR)/*.7z"
