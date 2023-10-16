@@ -102,6 +102,19 @@ Packages Included in the Load Out
       - ./lib/win64/libfbpng.a
 
 
+  + libogg 1.3.2 - Reference implementation of the Ogg media container
+    * Copyright (c) 2002, Xiph.org Foundation
+
+    * https://github.com/xiph/ogg/
+    * https://xiph.org/ogg/
+
+    * Files for Load Out:
+      - ./doc/libogg-license.txt
+      - ./inc/ogg/ogg.bi
+      - ./lib/win32/libogg.a
+      - ./lib/win64/libogg.a
+
+
   + libpng 1.6.40 - PNG Reference Library
     * Copyright (c) 1995-2023 The PNG Reference Library Authors
 
