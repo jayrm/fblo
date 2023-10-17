@@ -1,0 +1,14 @@
+-include codec.h
+-include vorbisenc.h
+-include vorbisfile.h
+
+-define OV_EXCLUDE_STATIC_CALLBACKS 1
+-replacements ./scripts/libvorbis-1.3.7.replacements
+
+-emit '*/codec.h' vorbis/codec.bi
+-emit '*/vorbisenc.h' vorbis/vorbisenc.bi
+-emit '*/vorbisfile.h' vorbis/vorbisfile.bi
+
+-inclib vorbis     vorbis/codec.bi
+-inclib vorbisenc  vorbis/vorbisenc.bi
+-inclib vorbisfile vorbis/vorbisfile.bi

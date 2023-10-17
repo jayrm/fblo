@@ -115,6 +115,25 @@ Packages Included in the Load Out
       - ./lib/win64/libogg.a
 
 
+  + libvorbis 1.3.7 - Reference implementation of the Ogg Vorbis audio format
+    * Copyright (c) 2002-2020 Xiph.org Foundation
+
+    * https://github.com/xiph/vorbis/
+    * https://xiph.org/vorbis/
+
+    * Files for Load Out:
+      - ./doc/libvorbis-license.txt
+      - ./inc/vorbis/vorbis.bi
+      - ./inc/vorbis/vorbisenc.bi
+      - ./inc/vorbis/vorbisfile.bi
+      - ./lib/win32/libvorbis.a
+      - ./lib/win32/libvorbisenc.a
+      - ./lib/win32/libvorbisfile.a
+      - ./lib/win64/libvorbis.a
+      - ./lib/win64/libvorbisenc.a
+      - ./lib/win64/libvorbisfile.a
+
+
   + libpng 1.6.40 - PNG Reference Library
     * Copyright (c) 1995-2023 The PNG Reference Library Authors
 
