@@ -40,6 +40,7 @@ usage() {
 	echo "   fblo              freebasic load out specifics"
 	echo "   fbfrog-jayrm      fbfrog (jayrm fork of freebasic/fbfrog)"
 	echo "   libpng-1.6.40     libpng version 1.6.40"
+	echo "   zlib-1.2.8        zlib version 1.2.8"
 	echo "   zlib-1.3          zlib version 1.3"
 	echo ""
 	exit 1
@@ -143,7 +144,7 @@ do
 	libpng-1.6.40)
 		FBLOPACKAGE="$arg"
 		;;
-	zlib-1.3)
+	zlib-1.2.8|zlib-1.3)
 		FBLOPACKAGE="$arg"
 		;;
 	-*)

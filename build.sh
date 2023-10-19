@@ -36,6 +36,7 @@ usage() {
 	echo "   fblo              freebasic load out specifics"
 	echo "   fbfrog-jayrm      fbfrog (jayrm fork of freebasic/fbfrog)"
 	echo "   libpng-1.6.40     libpng version 1.6.40"
+	echo "   zlib-1.2.8        zlib version 1.2.8"
 	echo "   zlib-1.3          zlib version 1.3"
 	echo ""
 	exit 1
@@ -177,10 +178,11 @@ dobuild () {
 		# extract_package libpng-1.6.40.zip lpng1640 libpng-1.6.40
 		extract_package libpng-1.6.40.tar.xz libpng-1.6.40
 		;;
-#   zlib-1.2.8)
-#       download_source https://github.com/madler/zlib/archive/refs/tags/ v1.2.8.zip zlib-1.2.8.zip
-#       extract_package zlib-1.2.8.zip zlib-1.2.8
-#       ;;
+	zlib-1.2.8)
+		download_source http://zlib.net/fossils/ zlib-1.2.8.tar.gz zlib-1.2.8.tar.gz
+		# download_source https://github.com/madler/zlib/archive/refs/tags/ v1.2.8.zip zlib-1.2.8.zip
+		extract_package zlib-1.2.8.zip zlib-1.2.8
+		;;
 	zlib-1.3)
 		# https://github.com/madler/zlib/releases/download/v1.3/zlib13.zip
 		download_source https://www.zlib.net/ zlib13.zip zlib-1.3.zip
@@ -261,7 +263,7 @@ do
 	libpng-1.6.40)
 		FBLOPACKAGE="$arg"
 		;;
-	zlib-1.3)
+	zlib-1.2.8|zlib-1.3)
 		FBLOPACKAGE="$arg"
 		;;
 	-*)
