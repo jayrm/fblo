@@ -1,5 +1,7 @@
 -inclib z
 
+-declarebool Z_SOLO
+
 -removeinclude limits.h
 -removeinclude sys/types.h
 -removeinclude stddef.h
@@ -21,3 +23,10 @@
 -removedefine ZEXPORTVA
 -removedefine FAR
 -removedefine gzgetc
+
+-ifndefdecl SEEK_SET
+-ifndefdecl SEEK_CUR
+-ifndefdecl SEEK_END
+
+-removedefine z_longlong
+-addforwarddecl internal_state
