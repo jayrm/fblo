@@ -41,6 +41,7 @@ usage() {
 	echo "   libmad-0.15.1b    libmad version 0.15.1b"
 	echo "   libdumb-0.9.3     libdumb version 0.9.3"
 	echo "   libcsid-jayrm     libcsid (jayrm fork)"
+	echo "   fbsound-1.2       fbsound version 1.2 (jayrm fork)"
 	echo "   fbpng-3.2.z       fbpng version 3.2.q"
 	echo "   libpng-1.6.40     libpng version 1.6.40"
 	echo "   zlib-1.2.8        zlib version 1.2.8"
@@ -204,6 +205,15 @@ dobuild () {
 		download_source https://github.com/jayrm/csid/archive/ ${csid_sha1}.zip csid-${csid_sha1}.zip
 		extract_package csid-${csid_sha1}.zip csid-${csid_sha1} libcsid-jayrm
 		;;
+	fbsound-1.2)
+		# download_source https://shiny3d.de/public/fbsound/ fbsound-1.2-src.zip fbsound-1.2-src.zip
+		# download_source https://shiny3d.de/public/fbsound/ fbsound-1.2.zip fbsound-1.2.zip
+		# extract_package fbsound-1.2-src.zip fbsound-1.2-src fbsound-1.2
+		# extract_package fbsound-1.2.zip fbsound-1.2 fbsound-1.2 Y
+		fbsound_sha1=3a41c93dd5959226f2839fc5be194b07d6ee6d89
+		download_source https://github.com/jayrm/fbsound/archive/ ${fbsound_sha1}.zip fbsound-${fbsound_sha1}.zip
+		extract_package fbsound-${fbsound_sha1}.zip fbsound-${fbsound_sha1} fbsound-1.2
+		;;
 	fbpng-3.2.z)
 		download_source https://github.com/mudhairless/fbpng/archive/refs/tags/ v3.2.z.zip fbpng-3.2.z.zip
 		extract_package fbpng-3.2.z.zip fbpng-3.2.z
@@ -314,6 +324,9 @@ do
 	libcsid-jayrm)
 		FBLOPACKAGE="$arg"
 		;;
+	fbsound-1.2)
+		FBLOPACKAGE="$arg"
+		;;
 	fbpng-3.2.z)
 		FBLOPACKAGE="$arg"
 		;;
@@ -375,6 +388,7 @@ if [ "${DOALL}" = "yes" ]; then
 	dobuild libmad-0.15.1b
 	dobuild libdumb-0.9.3
 	dobuild libcsid-jayrm
+	dobuild fbsound-1.2
 
 	if [ "${DOCLEAN}" = "clean-build" ]; then
 		echo "removing build directory"

@@ -36,6 +36,7 @@ Packages Included in the Load Out
   + libmad-0.15.1b - MPEG audio decoder library
   + libdumb-0.9.3 - Dynamic Universal Music Bibliotheque
   + libcsidlight - SID Emulator for playing C64 SID streams
+  + fbsound-1.2 - A free sound library for FreeBASIC compiler
   + libpng 1.6.40 - PNG Reference Library
   + zlib 1.3 - Data Compression Library
 
@@ -198,6 +199,36 @@ Details About the Packages
       - ./inc/csid/libcsid.bi
       - ./lib/win32/libcsidlight.a
       - ./lib/win64/libcsidlight.a
+
+
+  + fbsound-1.2 - A free sound library for FreeBASIC compiler
+    * Copyright 2005 - 2020 by D.J.Peters (Joshy)
+
+    * https://www.freebasic.net/forum/viewtopic.php?t=28905
+    * Forked version at https://github.com/jayrm/fbsound/
+
+    * Files for Load Out:
+      - ./doc/fbsound-license.txt
+      - ./inc/fbsound/fbs-config.bi
+      - ./inc/fbsound/fbs3d.bi
+      - ./inc/fbsound/fbscpu.bi
+      - ./inc/fbsound/fbsdsp.bi
+      - ./inc/fbsound/fbsound.bi
+      - ./inc/fbsound/fbsound_dynamic.bi
+      - ./inc/fbsound/fbsound_oop.bi
+      - ./inc/fbsound/fbstypes.bi
+      - ./lib/win32/libfbscpu.a
+      - ./lib/win32/libfbsdsp.a
+      - ./lib/win32/libfbsound.a
+      - ./lib/win64/libfbscpu.a
+      - ./lib/win64/libfbsdsp.a
+      - ./lib/win64/libfbsound.a
+      - ./bin/win32/fbsound-32.dll
+      - ./bin/win32/fbsound-ds-32.dll
+      - ./bin/win32/fbsound-mm-32.dll
+      - ./bin/win32/fbsound-64.dll
+      - ./bin/win32/fbsound-ds-64.dll
+      - ./bin/win32/fbsound-mm-64.dll
 
 
   + libpng 1.6.40 - PNG Reference Library
