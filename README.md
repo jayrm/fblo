@@ -147,6 +147,20 @@ Packages Included in the Load Out
       - ./lib/win64/libmad.a
 
 
+  + libdumb-0.9.3 - Dynamic Universal Music Bibliotheque
+    * Copyright (C) 2001-2005 Ben Davis, Robert J Ohannessian
+    *                         and Julien Cugniere
+
+    * https://sourceforge.net/projects/dumb/
+    * https://dumb.sourceforge.net/
+
+    * Files for Load Out:
+      - ./doc/libdumb-license.txt
+      - ./inc/dumb/dumb.bi
+      - ./lib/win32/libdumb.a
+      - ./lib/win64/libdumb.a
+
+
   + libpng 1.6.40 - PNG Reference Library
     * Copyright (c) 1995-2023 The PNG Reference Library Authors
 

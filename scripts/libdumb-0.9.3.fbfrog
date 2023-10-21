@@ -1,0 +1,14 @@
+-include dumb.h
+
+-removedefine DUMB_H
+-removedefine ASSERT
+
+-addforwarddecl DUMBFILE
+-addforwarddecl DUH
+-addforwarddecl DUH_SIGRENDERER
+-addforwarddecl DUMB_IT_SIGDATA
+-addforwarddecl DUMB_IT_SIGRENDERER
+-addforwarddecl DUMB_CLICK_REMOVER
+
+-inclib dumb
+
