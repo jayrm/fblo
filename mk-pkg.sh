@@ -42,6 +42,7 @@ usage() {
 	echo "   FBImage-20171102  FBImage version 2017-11-02"
 	echo "   libogg-1.3.2      ogg version 1.3.2"
 	echo "   libvorbis-1.3.7   vorbis version 1.3.7"
+	echo "   libmad-0.15.1b    libmad version 0.15.1b"
 	echo "   fbpng-3.2.z       fbpng version 3.2.z"
 	echo "   libpng-1.6.40     libpng version 1.6.40"
 	echo "   zlib-1.2.8        zlib version 1.2.8"
@@ -152,6 +153,9 @@ do
 		FBLOPACKAGE="$arg"
 		;;
 	libvorbis-1.3.7)
+		FBLOPACKAGE="$arg"
+		;;
+	libmad-0.15.1b)
 		FBLOPACKAGE="$arg"
 		;;
 	fbpng-3.2.z)

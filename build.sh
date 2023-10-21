@@ -38,6 +38,7 @@ usage() {
 	echo "   FBImage-20171102  FBImage version 2017-11-02"
 	echo "   libogg-1.3.2      libogg version 1.3.2"
 	echo "   libvorbis-1.3.7   libvorbis version 1.3.7"
+	echo "   libmad-0.15.1b    libmad version 0.15.1b"
 	echo "   fbpng-3.2.z       fbpng version 3.2.q"
 	echo "   libpng-1.6.40     libpng version 1.6.40"
 	echo "   zlib-1.2.8        zlib version 1.2.8"
@@ -188,6 +189,10 @@ dobuild () {
 		download_source https://github.com/xiph/vorbis/releases/download/v1.3.7/ libvorbis-1.3.7.tar.xz libvorbis-1.3.7.tar.xz
 		extract_package libvorbis-1.3.7.tar.xz libvorbis-1.3.7 libvorbis-1.3.7
 		;;
+	libmad-0.15.1b)
+		download_source https://sourceforge.net/projects/mad/files/libmad/0.15.1b/ libmad-0.15.1b.tar.gz/download libmad-0.15.1b.tar.gz
+		extract_package libmad-0.15.1b.tar.gz libmad-0.15.1b
+		;;
 	fbpng-3.2.z)
 		download_source https://github.com/mudhairless/fbpng/archive/refs/tags/ v3.2.z.zip fbpng-3.2.z.zip
 		extract_package fbpng-3.2.z.zip fbpng-3.2.z
@@ -289,6 +294,9 @@ do
 	libvorbis-1.3.7)
 		FBLOPACKAGE="$arg"
 		;;
+	libmad-0.15.1b)
+		FBLOPACKAGE="$arg"
+		;;
 	fbpng-3.2.z)
 		FBLOPACKAGE="$arg"
 		;;
@@ -347,6 +355,7 @@ if [ "${DOALL}" = "yes" ]; then
 	dobuild FBImage-20171102
 	dobuild libogg-1.3.2
 	dobuild libvorbis-1.3.7
+	dobuild libmad-0.15.1b
 
 	if [ "${DOCLEAN}" = "clean-build" ]; then
 		echo "removing build directory"

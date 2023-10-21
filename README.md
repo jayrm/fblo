@@ -134,6 +134,19 @@ Packages Included in the Load Out
       - ./lib/win64/libvorbisfile.a
 
 
+  + libmad-0.15.1b - MPEG audio decoder library
+     * Copyright (C) 2000-2004 Underbit Technologies, Inc.
+
+     * https://www.underbit.com/products/mad/
+     * https://sourceforge.net/projects/mad/
+
+    * Files for Load Out:
+      - ./doc/libmad-license.txt
+      - ./inc/mad/mad.bi
+      - ./lib/win32/libmad.a
+      - ./lib/win64/libmad.a
+
+
   + libpng 1.6.40 - PNG Reference Library
     * Copyright (c) 1995-2023 The PNG Reference Library Authors
 

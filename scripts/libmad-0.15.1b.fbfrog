@@ -12,6 +12,8 @@
 # so these can't be used wither
 -removedefine MAD_F_ML0
 -removedefine MAD_F_MLA
+-removedefine FPM_INTEL
+-removedefine FPM_DEFAULT
 
 -rename_ MAD_VERSION_MAJOR
 -rename_ MAD_VERSION_MINOR
