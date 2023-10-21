@@ -161,6 +161,22 @@ Packages Included in the Load Out
       - ./lib/win64/libdumb.a
 
 
+  + libcsidlight - SID Emulator for playing C64 SID streams
+    * [csid for fbsound](https://github.com/jayrm/csid/) by Jeff Marshall
+    * based on [cppsid](https://github.com/mlund/cppsid/) by Mikael Lund
+    * based on [csid-mod](https://github.com/possan/csid-mod) by Per-Olov Jernberg
+    * based on [cSID](https://csdb.dk/release/?id=153597) by Hermit
+    * based on [cSID-light](https://csdb.dk/release/?id=156587) by Hermit
+
+    * https://github.com/jayrm/csid/
+
+    * Files for Load Out:
+      - ./doc/libcsidlight-license.txt
+      - ./inc/csid/libcsid.bi
+      - ./lib/win32/libcsidlight.a
+      - ./lib/win64/libcsidlight.a
+
+
   + libpng 1.6.40 - PNG Reference Library
     * Copyright (c) 1995-2023 The PNG Reference Library Authors
 

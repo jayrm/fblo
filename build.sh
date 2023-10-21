@@ -40,6 +40,7 @@ usage() {
 	echo "   libvorbis-1.3.7   libvorbis version 1.3.7"
 	echo "   libmad-0.15.1b    libmad version 0.15.1b"
 	echo "   libdumb-0.9.3     libdumb version 0.9.3"
+	echo "   libcsid-jayrm     libcsid (jayrm fork)"
 	echo "   fbpng-3.2.z       fbpng version 3.2.q"
 	echo "   libpng-1.6.40     libpng version 1.6.40"
 	echo "   zlib-1.2.8        zlib version 1.2.8"
@@ -198,6 +199,11 @@ dobuild () {
 		download_source https://sourceforge.net/projects/dumb/files/dumb/0.9.3/ dumb-0.9.3.zip/download libdumb-0.9.3.zip
 		extract_package libdumb-0.9.3.zip dumb-0.9.3 libdumb-0.9.3
 		;;
+	libcsid-jayrm)
+		csid_sha1=034e4680fb1d3c999f9c17c38b3e1836ea18abbb
+		download_source https://github.com/jayrm/csid/archive/ ${csid_sha1}.zip csid-${csid_sha1}.zip
+		extract_package csid-${csid_sha1}.zip csid-${csid_sha1} libcsid-jayrm
+		;;
 	fbpng-3.2.z)
 		download_source https://github.com/mudhairless/fbpng/archive/refs/tags/ v3.2.z.zip fbpng-3.2.z.zip
 		extract_package fbpng-3.2.z.zip fbpng-3.2.z
@@ -305,6 +311,9 @@ do
 	libdumb-0.9.3)
 		FBLOPACKAGE="$arg"
 		;;
+	libcsid-jayrm)
+		FBLOPACKAGE="$arg"
+		;;
 	fbpng-3.2.z)
 		FBLOPACKAGE="$arg"
 		;;
@@ -365,6 +374,7 @@ if [ "${DOALL}" = "yes" ]; then
 	dobuild libvorbis-1.3.7
 	dobuild libmad-0.15.1b
 	dobuild libdumb-0.9.3
+	dobuild libcsid-jayrm
 
 	if [ "${DOCLEAN}" = "clean-build" ]; then
 		echo "removing build directory"
