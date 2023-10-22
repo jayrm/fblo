@@ -1,28 +1,47 @@
 JayRM's FreeBASIC Load Out - v0.3
 ---------------------------------
-Prebuilt libraries for win32/win64 and source files that can be can be dropped
-in to an existing standalone FreeBASIC install.
+Translated headers and prebuilt static libraries for FreeBASIC win32/win64
+that can be can be dropped in to an existing standalone FreeBASIC install.
 
-The repository contains the scripts needed to build the win32/win64
-libraries from sources.
+The Load Out is intended to provide source code and libraries for users
+that would be otherwise difficult to find or build on their own; collected
+in one package and ready for use.
 
-The release packages contain the prebuilt binaries and supporting
-files.
+The repository contains the scripts needed to build win32/win64 libraries
+from sources, translate C headers, copy licensing information and package
+in to a release distribution.
 
 
 License
 -------
-For binary releases, see ./doc/{package}-license.txt for licenses
-of each of the packages included with the release.
+For binary releases, see ./doc/{package}-license.txt for license statement
+for each of the packages included with the release. Translated C header files
+may also contain the copyright statement or license information.
 
-Some header files are automatically translated from original C sources and
-the license and/or copyright statement is located at the top of each header.
+For the source repository itself, which currently only contains scripts for
+building, see ./LICENSE.txt in the top level directory.
 
-For the source repository itself, see ./LICENSE.txt in the top level directory.
+Other sources included in the repository will have their own copyright
+statement or license information.
+
+
+Packages Included in the Load Out
+---------------------------------
+  + fblo: JayRM's FreeBASIC Load Out
+  + fbfrog: A binding generator for FreeBASIC
+  + FBImage: Load BMP, PNG, JPG, TGA, DDS from file or memory as FBImage
+  + fbpng 3.2.z: FreeBASIC PNG Library
+  + libogg 1.3.2 - Reference implementation of the Ogg media container
+  + libvorbis 1.3.7 - Reference implementation of the Ogg Vorbis audio format
+  + libmad-0.15.1b - MPEG audio decoder library
+  + libdumb-0.9.3 - Dynamic Universal Music Bibliotheque
+  + libcsidlight - SID Emulator for playing C64 SID streams
+  + libpng 1.6.40 - PNG Reference Library
+  + zlib 1.3 - Data Compression Library
 
 
 Installing a Prebuilt Load Out
------------------------------------
+------------------------------
   1) Download the release package that matches your version version of freebasic.
 
      For example: for FreeBASIC 1.10.0 using winlibs gcc-9.3 toolchain:
@@ -34,8 +53,8 @@ Installing a Prebuilt Load Out
      renamed fbc installation directory.
 
 
-Packages Included in the Load Out
----------------------------------
+Details About the Packages
+--------------------------
 
   + fblo: JayRM's FreeBASIC Load Out
     * Copyright (C) 2023 Jeff Marshall <coder[at]execulink.com>
@@ -57,7 +76,7 @@ Packages Included in the Load Out
       - ./fbfrog/*
 
 
-  + fbimage: Load BMP, PNG, JPG, TGA, DDS from file or memory as FBImage
+  + FBImage: Load BMP, PNG, JPG, TGA, DDS from file or memory as FBImage
 
     * subset of SOIL library assembled by D.J.Peters (Joshy)
       https://shiny3d.de/public/libs/FBImage.zip
@@ -97,7 +116,11 @@ Packages Included in the Load Out
 
     * Files for Load Out:
       - ./doc/fbpng-license.txt
-      - ./inc/fbpng/*.bi
+      - ./inc/fbpng/fbmld.bi
+      - ./inc/fbpng/fbpng.bi
+      - ./inc/fbpng/fbpng_gfxlib2.bi
+      - ./inc/fbpng/fbpng_opengl.bi
+      - ./inc/fbpng/png_image.bi
       - ./lib/win32/libfbpng.a
       - ./lib/win64/libfbpng.a
 
@@ -213,8 +236,8 @@ Basic steps:
   2) mk-distros.bat  (uses  ./makefile)
 
 The batch files and scripts require toolchains to be pre-installed at some
-known locations and (sorry) some paths are currently hard coded. (perhaps
-in a future version this will be more easily configured).
+known locations and (sorry) most paths are currently hard coded. (perhaps
+in a future version this can be easily configured).
 
   * Build environment (32-bit and 64-bit versions)
     - c:/msys32/mingw32, c:/msys32/usr/bin
@@ -243,17 +266,18 @@ Tools Used
     - FreeBASIC     https://www.freebasic.net/
                     https://github.com/freebasic/fbc/
     - fbfrog        https://github.com/freebasic/fbfrog/
+    - fblo          https://github.com/jayrm/fblo/
     - GCC           https://gcc.gnu.org/
     - GNU binutils  https://gnu.org/software/binutils/
     - MinGW         https://osdn.net/projects/mingw/
     - MinGW-w64     https://mingw-w64.org/
                     https://github.com/niXman/mingw-builds-binaries/
     - WinLibs       https://www.winlibs.com/
-    - fblo          https://github.com/jayrm/fblo/
 
 
 TODO
 ----
+  + add project name to license files (to make obvious besides filename)
   + move hard coded paths to a configuration
   + allow configuration to select fbc versions
   + allow configuration to select toolchains
@@ -261,6 +285,33 @@ TODO
     since the extract/confgure/make/package is typically only completed
     once for each package, the makefile is overkill (though the makefile
     is nice to have for dealing with lots of variables, paths, and files)
-  + reduce to single target build configuration
+  + reduce to single target build configuration - building for multiple
+    toolchains and fbc versions is nice, but can probably do a single
+    targeted goal once most of the bugs in scripts are worked out
+    and we move on to a newer release of fbc
   + make a shell script for dealing with license file and fbfrog header
+    seems like an oppurtunity to reduce copies of duplicated script
   + use the newly build fbfrog.exe instead relying on the host install
+  + add a tests folder to do at least a rudimentary compile check of headers
+  + add some non-trivial examples of library usage
+  + decide about adding copies of the translater headers to the repo itself
+    might be nice for sharing development fixes of translated headers, but
+    without a matching static library, might be cause unexpected
+    incompatibility
+  + decide where user contributed code will live - i.e. useful headers and
+    code to included in the load out but do not necessarily warrant an
+    independant repo to pull from
+  + decide where original sources will live.  Maybe attached to the release?
+    it doesn't seem right to commit source packages in to the repo
+  + write an alternate set of instructions for using the load out but not
+    installed in the freebasic installation directory.  Users may want to
+    try out the load out but not overwrite files in the installation.
+  + write instructions for reporting bugs
+  + write instructions for forking the load out to make contributions
+  + ask for help with linux or other targets (I don't think I have enough
+    gas in the tank for that trip).
+
+
+Thanks for downloading!
+-----------------------
+  Jeff Marshall <coder[at]execulink.com>
