@@ -3,6 +3,10 @@
 -removedefine DUMB_H
 -removedefine ASSERT
 
+# MIN/MAX is defined in too many places to have it here too
+-removedefine MIN
+-removedefine MAX
+
 -addforwarddecl DUMBFILE
 -addforwarddecl DUH
 -addforwarddecl DUH_SIGRENDERER
