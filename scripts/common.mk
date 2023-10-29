@@ -30,7 +30,7 @@
 
 TOPDIR=$(shell pwd)
 
-FBLO_VERSION := 0.3
+FBLO_VERSION := 0.4
 
 FBC    := fbc
 EXEEXT := $(shell $(FBC) -print x)

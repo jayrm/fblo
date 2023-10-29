@@ -1,4 +1,4 @@
-JayRM's FreeBASIC Load Out - v0.3
+JayRM's FreeBASIC Load Out - v0.4
 ---------------------------------
 Translated headers and prebuilt static libraries for FreeBASIC win32/win64
 that can be can be dropped in to an existing standalone FreeBASIC install.
@@ -45,7 +45,7 @@ Installing a Prebuilt Load Out
   1) Download the release package that matches your version version of freebasic.
 
      For example: for FreeBASIC 1.10.0 using winlibs gcc-9.3 toolchain:
-        fblo-0.3-fbc-1.10.0-winlibs-gcc-9.3.0.7z
+        fblo-0.4-fbc-1.10.0-winlibs-gcc-9.3.0.7z
 
   2) Extract in to your FreeBASIC installation.
      **careful!** - some files may be replaced
