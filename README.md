@@ -3,7 +3,7 @@ JayRM's FreeBASIC Load Out - v0.4
 Translated headers and prebuilt static libraries for FreeBASIC win32/win64
 that can be can be dropped in to an existing standalone FreeBASIC install.
 
-The Load Out is intended to provide source code and libraries for users
+The Load Out is intended to provide users with source code and libraries
 that would be otherwise difficult to find or build on their own; collected
 in one package and ready for use.
 
@@ -42,7 +42,7 @@ Packages Included in the Load Out
 
 Installing a Prebuilt Load Out
 ------------------------------
-  1) Download the release package that matches your version version of freebasic.
+  1) Download the release package that matches your version of freebasic.
 
      For example: for FreeBASIC 1.10.0 using winlibs gcc-9.3 toolchain:
         fblo-0.4-fbc-1.10.0-winlibs-gcc-9.3.0.7z
@@ -172,7 +172,7 @@ Details About the Packages
 
   + libdumb-0.9.3 - Dynamic Universal Music Bibliotheque
     * Copyright (C) 2001-2005 Ben Davis, Robert J Ohannessian
-    *                         and Julien Cugniere
+    * and Julien Cugniere
 
     * https://sourceforge.net/projects/dumb/
     * https://dumb.sourceforge.net/
@@ -242,7 +242,7 @@ in a future version this can be easily configured).
   * Build environment (32-bit and 64-bit versions)
     - c:/msys32/mingw32, c:/msys32/usr/bin
     - c:/msys64/mingw64, c:/msys64/usr/bin
-    - Base install plus 'make tar zip p7zip git wget curl dos2unix'
+    - Base install plus 'make tar zip p7zip git wget curl unix2dos'
 
   * FreeBASIC (32-bit and 64-bit versions)
     - d:/fb.git/fbc-win32.exe
@@ -257,7 +257,7 @@ in a future version this can be easily configured).
     - c:/mingw-w64-5.2/mingw32  , c:/mingw-w64-5.2/mingw64
     - c:/mingw-w64-11.2/mingw32 , c:/mingw-w64-11.2/mingw64
 
-  * fbfrog (forked):
+  * fbfrog (jayrm forked version):
     - d:/fbfrog.git/fbfrog.exe
 
 
@@ -267,6 +267,7 @@ Tools Used
                     https://github.com/freebasic/fbc/
     - fbfrog        https://github.com/freebasic/fbfrog/
     - fblo          https://github.com/jayrm/fblo/
+    - MSYS2         https://www.msys2.org/
     - GCC           https://gcc.gnu.org/
     - GNU binutils  https://gnu.org/software/binutils/
     - MinGW         https://osdn.net/projects/mingw/
@@ -290,13 +291,13 @@ TODO
     targeted goal once most of the bugs in scripts are worked out
     and we move on to a newer release of fbc
   + make a shell script for dealing with license file and fbfrog header
-    seems like an oppurtunity to reduce copies of duplicated script
-  + use the newly build fbfrog.exe instead relying on the host install
+    seems like an opportunity to reduce copies of duplicated script
+  + use the newly built fbfrog.exe instead relying on the host install
   + add a tests folder to do at least a rudimentary compile check of headers
   + add some non-trivial examples of library usage
   + decide about adding copies of the translater headers to the repo itself
     might be nice for sharing development fixes of translated headers, but
-    without a matching static library, might be cause unexpected
+    without a matching static library, might also cause unexpected
     incompatibility
   + decide where user contributed code will live - i.e. useful headers and
     code to included in the load out but do not necessarily warrant an
