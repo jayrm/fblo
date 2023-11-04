@@ -10,7 +10,7 @@ TARGETS := $(DOCDIR)/fbfrog-license.txt
 
 # only build fbfrog.exe for 32-bit, it will work on 64-bit too
 ifeq ($(FBCTARGET),win32)
-	TARGETS += $(ROOTDIR)/fbfrog.exe
+    TARGETS += $(ROOTDIR)/fbfrog.exe
 endif
 
 .phony : all

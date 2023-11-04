@@ -32,7 +32,7 @@ SRCS+=$(addprefix $(SRCDIR)/helpers/,$(addsuffix .c, clickrem memfile resample \
 	sampbuf silence stdfile ) )
 SRCS+=$(addprefix $(SRCDIR)/it/,$(addsuffix .c, itload itread itload2 itread2 \
 	itrender itunload loads3m reads3m loadxm readxm loadmod readmod loads3m2 \
-reads3m2 loadxm2 readxm2 loadmod2 readmod2 xmeffect itorder itmisc ) )
+	reads3m2 loadxm2 readxm2 loadmod2 readmod2 xmeffect itorder itmisc ) )
 
 OBJS := $(addprefix $(OBJDIR)/, $(notdir $(patsubst %.c, %.o, $(SRCS))))
 

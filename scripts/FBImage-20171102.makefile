@@ -8,11 +8,11 @@ FBLOPACKAGE=FBImage-20171102
 include ./scripts/common.mk
 
 ifeq ($(FBCTARGET),win32)
-	LIBNAME=libFBImage-32-static
+    LIBNAME=libFBImage-32-static
 else ifeq ($(FBCTARGET),win64)
-	LIBNAME=libFBImage-64-static
+    LIBNAME=libFBImage-64-static
 else
-	$(error $(FBCTARGET) not supported)
+    $(error $(FBCTARGET) not supported)
 endif
 
 # Sources are in a sub-directory

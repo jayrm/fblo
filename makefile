@@ -43,7 +43,7 @@ $(DSTDIR)/$(ZIPNAME).7z : $(SRCFILES)
 	$(CMD_MKDIR) -p $(DSTDIR)
 	$(CMD_RM) -f "$(DSTDIR)/$(ZIPNAME).7z"
 	$(CMD_CD) "output/$(FBCVERSION)/$(TOOLCHAIN)" && \
-		"$(P7ZIP)" a -r "$(ZIPNAME).7z" > /dev/nul
+		"$(P7ZIP)" a -r -mx9 -xr!.git "$(ZIPNAME).7z" > /dev/nul
 	$(CMD_MV) "output/$(FBCVERSION)/$(TOOLCHAIN)/$(ZIPNAME).7z" "$(DSTDIR)/$(ZIPNAME).7z"
 
 .phony : clean
