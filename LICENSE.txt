@@ -1,6 +1,8 @@
+JayRM's FreeBASIC Load Out
+
 MIT License
 
-Copyright (c) 2023 Jeff Marshall <coderjeff[at]execulink.com>
+Copyright (c) 2023 Jeff Marshall <coder[at]execulink.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
