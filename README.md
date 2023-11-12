@@ -38,6 +38,7 @@ Packages Included in the Load Out
   + libcsidlight - SID Emulator for playing C64 SID streams
   + fbsound-1.2 - A free sound library for FreeBASIC compiler
   + libpng 1.6.40 - PNG Reference Library
+  + pcre 8.45 - Perl-Compatible Regular Expression
   + zlib 1.3 - Data Compression Library
 
 
@@ -243,6 +244,26 @@ Details About the Packages
       - ./inc/png16.bi
       - ./lib/win32/libpng16.a
       - ./lib/win64/libpng16.a
+
+
+  + pcre 8.45 - Perl-Compatible Regular Expressions
+    * Written by Philip Hazel
+    * Copyright (c) 1997-2021 University of Cambridge
+
+    * https://https://www.pcre.org/
+
+    * Files for Load Out:
+      - ./doc/pcre-license.txt
+      - ./inc/pcre.bi
+      - ./inc/pcreposix.bi
+      - ./lib/win32/libpcre.a
+      - ./lib/win32/libpcre16.a
+      - ./lib/win32/libpcre32.a
+      - ./lib/win32/libpcreposix.a
+      - ./lib/win64/libpcre.a
+      - ./lib/win64/libpcre16.a
+      - ./lib/win64/libpcre32.a
+      - ./lib/win64/libpcreposix.a
 
 
   + zlib 1.3 - Data Compression Library

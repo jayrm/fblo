@@ -1,0 +1,19 @@
+-declareversions PCRE_CODE_UNIT_WIDTH 0 8 16 32
+
+-selectversion
+-case 0 -define PCRE_CODE_UNIT_WIDTH 0
+-case 8 -define PCRE_CODE_UNIT_WIDTH 8
+-case 16 -define PCRE_CODE_UNIT_WIDTH 16
+-case 32 -define PCRE_CODE_UNIT_WIDTH 32
+-endselect
+
+-iftarget windows
+	-declarebool PCRE_STATIC
+	-ifdef PCRE_STATIC
+		-define PCRE_STATIC 1
+	-endif
+-endif
+
+-removedefine PCRE_EXP_DECL
+-removedefine PCREPOSIX_EXP_DECL
+-removedefine PCREPOSIX_EXP_DEFN

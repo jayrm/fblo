@@ -37,3 +37,6 @@
 #include "fbsound/fbsdsp.bi"
 #include "fbsound/fbs3d.bi"
 #include "fbsound/fbsound_oop.bi"
+
+#define PCRE_CODE_UNIT_WIDTH 8
+#include once "pcre.bi"
