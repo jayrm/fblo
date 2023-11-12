@@ -27,6 +27,7 @@ $(DOCDIR) :
 
 $(DOCDIR)/fbfrog-license.txt : $(SRCDIR)/license.txt | $(DOCDIR)
 	$(CMD_CP) $< $@
+	$(CMD_U2D) $@
 
 $(TOPDIR)/$(ROOTDIR) :
 	$(CMD_MKDIR) -p $(TOPDIR)/$(ROOTDIR)

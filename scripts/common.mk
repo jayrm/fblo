@@ -43,6 +43,7 @@ CMD_MV     := mv
 CMD_CD     := cd
 CMD_MKDIR  := mkdir
 CMD_HEAD   := head
+CMD_TAIL   := tail
 CMD_U2D    := unix2dos
 CMD_FIND   := find
 
