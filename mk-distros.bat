@@ -12,6 +12,7 @@ setlocal
 
 	set MSYS32PATHS=c:\msys32\mingw32\bin;c:\msys32\usr\bin
 	set FBC32=d:/fb.1.10/fbc-win32.exe
+	set FBC64=d:/fb.1.10/fbc-win64.exe
 
 	set P7ZIP=c:/msys32/usr/bin/7z
 
@@ -55,7 +56,7 @@ setlocal
 @Rem ======================================================
 :ERROR
 	echo aborted
-	goto DONE
+	exit /b 1
 
 @Rem ======================================================
 :DONE

@@ -29,7 +29,10 @@ DSTPREFIX := fblo-${FBLO_VERSION}
 DSTDIR    := distros
 OUTDIR    := output/$(FBCVERSION)/$(TOOLCHAIN)
 
-SRCFILES  := $(shell find $(OUTDIR) -type f -printf "%p ")
+SRCFILES  := $(shell $(CMD_FIND) $(OUTDIR) -type f -printf "%p ")
+
+TSTFILES  := $(wildcard tests/*.bas)
+TESTEXES  := $(patsubst tests/%.bas,tests/%.exe,$(TSTFILES))
 
 ZIPNAME   := $(DSTPREFIX)-$(FBCVERSION)-$(TOOLCHAIN)
 
@@ -46,6 +49,16 @@ $(DSTDIR)/$(ZIPNAME).7z : $(SRCFILES)
 		"$(P7ZIP)" a -r -mx9 -xr!.git "$(ZIPNAME).7z" > /dev/nul
 	$(CMD_MV) "output/$(FBCVERSION)/$(TOOLCHAIN)/$(ZIPNAME).7z" "$(DSTDIR)/$(ZIPNAME).7z"
 
+.phony : tests
+tests : $(TESTEXES)
+
+tests/%.exe : tests/%.bas
+	$(FBC) $< -i $(INCDIR) -p $(LIBDIR) -x $@
+
+.phony : clean-tests
+clean-tests:
+	$(CMD_RM) -f  $(TESTEXES)
+
 .phony : clean
-clean:
+clean: clean-tests
 	$(CMD_RM) -f  "$(DSTDIR)/*.7z"

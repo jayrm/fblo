@@ -44,6 +44,7 @@ CMD_CD     := cd
 CMD_MKDIR  := mkdir
 CMD_HEAD   := head
 CMD_U2D    := unix2dos
+CMD_FIND   := find
 
 CMD_MAKE   := make
 
