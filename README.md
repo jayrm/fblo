@@ -39,6 +39,7 @@ Packages Included in the Load Out
   + fbsound-1.2 - A free sound library for FreeBASIC compiler
   + libpng 1.6.40 - PNG Reference Library
   + pcre 8.45 - Perl-Compatible Regular Expression
+  + pcre2 10.42 - Perl-Compatible Regular Expressions
   + zlib 1.3 - Data Compression Library
 
 
@@ -264,6 +265,24 @@ Details About the Packages
       - ./lib/win64/libpcre16.a
       - ./lib/win64/libpcre32.a
       - ./lib/win64/libpcreposix.a
+
+
+  + pcre2 10.42 - Perl-Compatible Regular Expressions
+    * Written by Philip Hazel
+    Copyright (c) 1997-2022 University of Cambridge
+
+    * Files for Load Out:
+      - ./doc/pcre2-license.txt
+      - ./inc/pcre2.bi
+      - ./inc/pcre2posix.bi
+      - ./lib/win32/libpcre2-8.a
+      - ./lib/win32/libpcre2-16.a
+      - ./lib/win32/libpcre2-32.a
+      - ./lib/win32/libpcre2-posix.a
+      - ./lib/win64/libpcre2-8.a
+      - ./lib/win64/libpcre2-16.a
+      - ./lib/win64/libpcre2-32.a
+      - ./lib/win64/libpcre2-posix.a
 
 
   + zlib 1.3 - Data Compression Library

@@ -49,6 +49,7 @@ usage() {
 	echo "   fbpng-3.2.z       fbpng version 3.2.z"
 	echo "   libpng-1.6.40     libpng version 1.6.40"
 	echo "   pcre-8.45         pcre version 8.45"
+	echo "   pcre2-10.42       pcre2 version 10.42"
 	echo "   zlib-1.2.8        zlib version 1.2.8"
 	echo "   zlib-1.3          zlib version 1.3"
 	echo ""
@@ -178,6 +179,9 @@ do
 		FBLOPACKAGE="$arg"
 		;;
 	pcre-8.45)
+		FBLOPACKAGE="$arg"
+		;;
+	pcre2-10.42)
 		FBLOPACKAGE="$arg"
 		;;
 	zlib-1.2.8|zlib-1.3)

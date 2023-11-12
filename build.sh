@@ -45,6 +45,7 @@ usage() {
 	echo "   fbpng-3.2.z       fbpng version 3.2.q"
 	echo "   libpng-1.6.40     libpng version 1.6.40"
 	echo "   pcre-8.45         pcre version 8.45"
+	echo "   pcre2-10.42       pcre2 version 10.42"
 	echo "   zlib-1.2.8        zlib version 1.2.8"
 	echo "   zlib-1.3          zlib version 1.3"
 	echo ""
@@ -229,6 +230,10 @@ dobuild () {
 		download_source https://sourceforge.net/projects/pcre/files/pcre/8.45/ pcre-8.45.zip/download pcre-8.45.zip
 		extract_package pcre-8.45.zip pcre-8.45 pcre-8.45
 		;;
+	pcre2-10.42)
+		download_source https://github.com/PCRE2Project/pcre2/releases/download/pcre2-10.42/ pcre2-10.42.zip
+		extract_package pcre2-10.42.zip pcre2-10.42
+		;;
 	zlib-1.2.8)
 		download_source http://zlib.net/fossils/ zlib-1.2.8.tar.gz zlib-1.2.8.tar.gz
 		# download_source https://github.com/madler/zlib/archive/refs/tags/ v1.2.8.zip zlib-1.2.8.zip
@@ -341,6 +346,9 @@ do
 	pcre-8.45)
 		FBLOPACKAGE="$arg"
 		;;
+	pcre2-10.42)
+		FBLOPACKAGE="$arg"
+		;;
 	zlib-1.2.8|zlib-1.3)
 		FBLOPACKAGE="$arg"
 		;;
@@ -389,6 +397,7 @@ if [ "${DOALL}" = "yes" ]; then
 	dobuild fbfrog-jayrm
 	dobuild zlib-1.3
 	dobuild pcre-8.45
+	dobuild pcre2-10.42
 	dobuild libpng-1.6.40
 	dobuild fbpng-3.2.z
 	dobuild FBImage-20171102
