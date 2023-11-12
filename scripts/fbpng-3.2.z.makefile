@@ -16,6 +16,8 @@ BI_FILES += fbmld.bi
 BI_FILES += fbpng_gfxlib2.bi
 BI_FILES += fbpng_opengl.bi
 BI_FILES += png_image.bi
+BI_FILES += png_row_conv.bi
+BI_FILES += png_pal_conv.bi
 
 SRC_BI_FILES := $(addprefix $(SRCDIR)/inc/,$(BI_FILES))
 INC_BI_FILES := $(addprefix $(INCDIR)/fbpng/,$(BI_FILES))

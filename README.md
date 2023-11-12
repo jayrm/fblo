@@ -122,6 +122,8 @@ Details About the Packages
       - ./inc/fbpng/fbpng_gfxlib2.bi
       - ./inc/fbpng/fbpng_opengl.bi
       - ./inc/fbpng/png_image.bi
+      - ./inc/fbpng/png_pal_conv.bi
+      - ./inc/fbpng/png_row_conv.bi
       - ./lib/win32/libfbpng.a
       - ./lib/win64/libfbpng.a
 
