@@ -81,7 +81,7 @@ $(INCDIR)/fbsound:
 
 $(DST_BI_FILES) : $(SRC_BI_FILES) | $(INCDIR)/fbsound
 	$(CMD_CP) -t $(INCDIR)/fbsound $(SRC_BI_FILES)
-	$(CMD_U2D) $(SRC_BI_FILES)
+	$(CMD_U2D) $(DST_BI_FILES)
 
 $(DOCDIR):
 	$(CMD_MKDIR) -p $(DOCDIR)
